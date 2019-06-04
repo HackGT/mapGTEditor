@@ -1,9 +1,3 @@
-.canvas {
-    position: absolute;
-    top: 50px;
-    left: 50px;
-}
-
 #canvas {
     position: relative;
     top: 0px;
