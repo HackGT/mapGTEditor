@@ -1,3 +1,4 @@
+const errorMessageForHandlers = "Implement functionality in child class";
 /**
  * This class represents a Shape drawn on the Canvas
  */
@@ -45,5 +46,29 @@ class Shape {
             shape.selected = false;
             canvas.shapes[shapeId].hideNodes(); 
         }
+    }
+
+    static onMouseClick(event) {
+        console.error(errorMessageForHandlers);
+    }
+
+    static onMouseMove(event) {
+        console.error(errorMessageForHandlers);
+    }
+
+    static onMouseDownNode(event) {
+        console.error(errorMessageForHandlers);
+    }
+
+    static onMouseMoveNode(event) {
+        console.error(errorMessageForHandlers);
+    }
+
+    static onMouseUpNode(event) {
+        console.error(errorMessageForHandlers);
+    }
+    
+    static removeEventListeners() {
+        console.error(errorMessageForHandlers);
     }
 }

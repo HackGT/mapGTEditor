@@ -22,5 +22,3 @@ lineButton.addEventListener("click", () => {
     }
     canvas.canvas.addEventListener("click", Path.onMouseClick);
 });
-
-

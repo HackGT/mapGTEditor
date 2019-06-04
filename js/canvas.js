@@ -30,7 +30,6 @@ class Canvas {
     }
 
     add(shape) {
-        // refactor existing code
         this.shapes.push(shape);
         this.currentShape = shape;
         this.canvas.appendChild(shape.domGroup);
