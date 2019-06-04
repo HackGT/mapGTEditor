@@ -7,7 +7,6 @@ class Shape {
         this.svgTag = svgTag;
         this.attributes = attributes;
         this.domGroup = this.create();
-        this.nodes = [];
         this.selected = false;
     }
 

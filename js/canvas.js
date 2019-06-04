@@ -4,7 +4,7 @@
 class Canvas {
     constructor(canvasId, canvasContainerId) {
         // svg canvas
-        this.canvas = document.getElementById(canvasId);  
+        this.canvas = document.getElementById(canvasId);
         // container for the canvas to support accurate mouse click coordinates
         this.canvasContainer = document.getElementById(canvasContainerId);
         // list of shapes drawn on the canvas; shapes must be of class Shape

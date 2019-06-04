@@ -13,6 +13,7 @@ class Path extends Shape {
         this.domGroup = this.create();
         this.domElement = this.domGroup.querySelector('path');
         this.domGroup.classList.add(className);
+        this.nodes = [];
     }
 
     showNodes() {
