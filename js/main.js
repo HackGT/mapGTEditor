@@ -1,10 +1,10 @@
-let selectButton = document.getElementById("select");
-let lineButton = document.getElementById("line");
-
 const svgns = "http://www.w3.org/2000/svg";
 const canvas = new Canvas("canvas", "canvas-container");
 
 window.addEventListener("load", () => {
+    let selectButton = document.getElementById("select");
+    let lineButton = document.getElementById("line");
+    
     selectButton.addEventListener("click", () => {
         Path.removeEventListeners();
         for (let i = 0; i < canvas.shapes.length; i++) {
