@@ -1,10 +1,24 @@
 <!DOCTYPE html>
+<head>
+   <title>
+       Tools
+   </title>
+   <link rel="stylesheet" href="assets/stylesheets/main.css">
+</head>
 <html>
-    <head>
-        <title>MapGT Editor</title>
-        <link rel="stylesheet" href="./assets/stylesheets/main.css">
-    </head>
-    <body>
-        <h1>MapGT Editor</h1>
-    </body>
+    <div class="tools">
+            <button type="button" name="button" id="select">Select</button>
+            <button type="button" name="button" id="line">Line</button>
+    </div>
+    <div id='canvas-container'>
+        <svg id="canvas">
+        </svg>
+    </div>
+    <script src="js/point.js"></script>
+    <script src="js/canvas.js"></script>
+    <script src="js/shape.js"></script>
+    <script src="js/selectorNode.js"></script>
+    <script src="js/path.js"></script>
+    <script src="js/main.js"></script>
 </html>
+
