@@ -18,7 +18,9 @@ class Path extends Shape {
 
     showNodes() {
         for (let i = 0; i < this.nodes.length; i++) {
-            this.nodes[i].domElement.style.visibility = 'visible';
+            this.nodes[i].changeStyles({
+                "visibility": "visible"
+            });
             this.nodes[i].domElement.addEventListener("mousedown", Path.onMouseDownNode);
             this.nodes[i].domElement.addEventListener("mouseup", Path.onMouseUpNode);
         }
@@ -26,7 +28,9 @@ class Path extends Shape {
 
     hideNodes() {
         for (let i = 0; i < this.nodes.length; i++) {
-            this.nodes[i].domElement.style.visibility = 'hidden';
+            this.nodes[i].changeStyles({
+                "visibility": "hidden"
+            });
             this.nodes[i].domElement.removeEventListener("mousedown", Path.onMouseDownNode);
             this.nodes[i].domElement.removeEventListener("mouseup", Path.onMouseUpNode);
         }

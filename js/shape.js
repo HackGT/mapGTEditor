@@ -18,6 +18,7 @@ class Shape {
         for (let attribute in this.attributes) {
             path.setAttributeNS(null, attribute, this.attributes[attribute]);
         }
+
         pathGroup.appendChild(path);
         pathGroup.classList.add(className);
         return pathGroup;
@@ -32,6 +33,16 @@ class Shape {
             this.domElement.setAttributeNS(null, attribute, attributes[attribute]);
             this.attributes[attribute] = attributes[attribute];
         }
+    }
+
+    changeStyles(styles) {
+        let styleString = "";
+        for (let style in styles) {
+            styleString += `${style}: ${styles[style]}; `
+        }
+        this.changeAttributes({
+            "style": styleString
+        });
     }
 
     static onSelect(event) {

@@ -2,7 +2,7 @@
  * This class represents the nodes of the Shape
  */
 class Node extends Shape {
-    constructor(c, r = 5, parentShape, parent = canvas) {
+    constructor(c, r, parentShape, parent = canvas) {
         super('circle', {
             "cx": c.x,
             "cy": c.y,

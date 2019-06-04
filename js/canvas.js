@@ -11,6 +11,26 @@ class Canvas {
         this.shapes = [];  
         this.currentShape = null;
         this.clickToggle = false;
+        this.canvasId = canvasId;
+        this.canvasContainerId = canvasContainerId;
+    }
+
+    get canvas() {
+        this._canvas = document.getElementById(this.canvasId);
+        return this._canvas;
+    }
+
+    get canvasContainer() {
+        this._canvasContainer = document.getElementById(this.canvasContainerId);
+        return this._canvasContainer;
+    }
+
+    set canvas(canvasDOM) {
+        this._canvas = canvasDOM;
+    }
+
+    set canvasContainer(canvasContainerDOM) {
+        this._canvasContainer = canvasContainerDOM;
     }
     /**
      * Getter method for svgns URL to make svg shapes
