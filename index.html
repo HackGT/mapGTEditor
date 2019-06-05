@@ -6,14 +6,28 @@
    <link rel="stylesheet" href="assets/stylesheets/main.css">
 </head>
 <html>
-    <div class="tools">
-            <button type="button" name="button" id="select">Select</button>
-            <button type="button" name="button" id="line">Line</button>
+    <div id="grid">
+        <div id="title"><h1>MapGT Editor</h1></div>
+        <div id="options">options go here</div>
+
+        <div id="toolbar">
+            <div class="tools">
+                <button type="button" name="button" id="select">Select</button>
+                <button type="button" name="button" id="line">Line</button>
+            </div>
+        </div>
+
+        <div id="canvas-cell">
+            <div id='canvas-container'>
+                <svg id="canvas"></svg>
+            </div>
+        </div>
+
+        <div id="details-panel">
+            <div id=details></div>
+        </div>
     </div>
-    <div id='canvas-container'>
-        <svg id="canvas">
-        </svg>
-    </div>
+
     <script src="js/point.js"></script>
     <script src="js/canvas.js"></script>
     <script src="js/shape.js"></script>
