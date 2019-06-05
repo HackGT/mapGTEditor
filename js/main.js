@@ -12,10 +12,9 @@ window.addEventListener("load", () => {
             canvas.shapes[i].domElement.addEventListener("click", Shape.onSelect);
         }
     });
-    
+
     lineButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
-        console.log("I am here")
         canvas.canvas.addEventListener("click", Path.onMouseClick);
     });
 

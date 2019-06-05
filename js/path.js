@@ -44,7 +44,7 @@ class Path extends Shape {
         } else {
             canvas.currentShape.domGroup.classList.remove("temp");
             let shapeId = canvas.shapes.length - 1;
-            canvas.currentShape.domElement.setAttributeNS(null, "id", canvas.shapes.length - 1);
+            canvas.currentShape.domElement.setAttributeNS(null, "id", shapeId);
             for (let i = 0; i < canvas.currentShape.nodes.length; i++) {
                 canvas.currentShape.nodes[i].changeAttributes({
                     "id": `${shapeId}/${i}`
@@ -57,7 +57,7 @@ class Path extends Shape {
     }
 
     static onMouseMove(event) {
-        let pathObject = canvas.currentShape; 
+        let pathObject = canvas.currentShape;
         let currentCursor = canvas.getCursorPosition(event);
         pathObject.changeAttributes({
             "d": `M ${pathObject.moveTo.x} ${pathObject.moveTo.y} L ${currentCursor.x} ${currentCursor.y}`
@@ -79,7 +79,6 @@ class Path extends Shape {
     }
 
     static onMouseDownNode(event) {
-        Path.removeEventListeners();
         event.target.classList.add("selected");
         canvas.canvas.addEventListener("mousemove", Path.onMouseMoveNode);
     }
@@ -91,8 +90,8 @@ class Path extends Shape {
         let pathObject = canvas.shapes[shapeId];
         let currentCursor = canvas.getCursorPosition(event);
         let selectedNode = {};
-        
-        if (selectedNodeDOM.attributes.id.nodeValue == `${shapeId}/${0}`) {
+
+        if (nodeId == `${shapeId}/${0}`) {
             selectedNode = pathObject.nodes[0];
             pathObject.changeAttributes({
                 "d": `M ${currentCursor.x} ${currentCursor.y} L ${pathObject.lineTo.x} ${pathObject.lineTo.y}`
