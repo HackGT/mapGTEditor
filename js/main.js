@@ -7,13 +7,6 @@ window.addEventListener("load", () => {
     let rectangleButton = document.getElementById("rectangle");
     let polygonButton = document.getElementById("polygon");
 
-    canvas.add(new Polygon(new Point(100,200),[
-        new Point(400,200),
-        new Point(400,300),
-        new Point(100,300),
-        new Point(100,200)
-    ]));
-
     selectButton.addEventListener("click", () => {
         removeAllToolEventListeners();
         for (let i = 0; i < canvas.shapes.length; i++) {

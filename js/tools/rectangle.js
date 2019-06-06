@@ -26,6 +26,8 @@ class Rectangle extends Shape {
             });
             this.nodes[i].domElement.addEventListener("mousedown", Rectangle.onMouseDownNode);
             this.nodes[i].domElement.addEventListener("mouseup", Rectangle.onMouseUpNode);
+            this.nodes[i].domElement.addEventListener("mouseenter", Rectangle.onMouseEnterNode);
+            this.nodes[i].domElement.addEventListener("mouseleave", Rectangle.onMouseLeaveNode);
         }
     }
 
@@ -36,6 +38,8 @@ class Rectangle extends Shape {
             });
             this.nodes[i].domElement.removeEventListener("mousedown", Rectangle.onMouseDownNode);
             this.nodes[i].domElement.removeEventListener("mouseup", Rectangle.onMouseUpNode);
+            this.nodes[i].domElement.removeEventListener("mouseenter", Rectangle.onMouseEnterNode);
+            this.nodes[i].domElement.removeEventListener("mouseleave", Rectangle.onMouseLeaveNode);
         }
     }
 
@@ -158,6 +162,16 @@ class Rectangle extends Shape {
     static removeEventListeners() {
         canvas.canvas.removeEventListener("click", Rectangle.onMouseClick);
         canvas.canvas.removeEventListener("mousemove", Rectangle.onMouseMove);
+    }
+
+    static onMouseEnterNode(event) {
+        event.target.setAttributeNS(null, "r", 6);
+        event.target.classList.add("active");
+    }
+
+    static onMouseLeaveNode(event) {
+        event.target.setAttributeNS(null, "r", 5);
+        event.target.classList.remove("active");
     }
 
     static addNodes(shape) {

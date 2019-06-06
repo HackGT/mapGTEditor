@@ -23,6 +23,8 @@ class Path extends Shape {
             });
             this.nodes[i].domElement.addEventListener("mousedown", Path.onMouseDownNode);
             this.nodes[i].domElement.addEventListener("mouseup", Path.onMouseUpNode);
+            this.nodes[i].domElement.addEventListener("mouseenter", Path.onMouseEnterNode);
+            this.nodes[i].domElement.addEventListener("mouseleave", Path.onMouseLeaveNode);
         }
     }
 
@@ -33,6 +35,8 @@ class Path extends Shape {
             });
             this.nodes[i].domElement.removeEventListener("mousedown", Path.onMouseDownNode);
             this.nodes[i].domElement.removeEventListener("mouseup", Path.onMouseUpNode);
+            this.nodes[i].domElement.removeEventListener("mouseenter", Path.onMouseEnterNode);
+            this.nodes[i].domElement.removeEventListener("mouseleave", Path.onMouseLeaveNode);
         }
     }
 
@@ -117,6 +121,16 @@ class Path extends Shape {
         let selectedNodeDOM = document.querySelector(".selected");
         selectedNodeDOM.classList.remove("selected");
         canvas.canvas.removeEventListener("mousemove", Path.onMouseMoveNode);
+    }
+
+    static onMouseEnterNode(event) {
+        event.target.setAttributeNS(null, "r", 6);
+        event.target.classList.add("active");
+    }
+
+    static onMouseLeaveNode(event) {
+        event.target.setAttributeNS(null, "r", 5);
+        event.target.classList.remove("active");
     }
 
     static removeEventListeners() {
