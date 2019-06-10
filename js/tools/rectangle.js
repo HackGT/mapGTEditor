@@ -47,7 +47,7 @@ class Rectangle extends Shape {
         if (canvas.clickToggle) {
             canvas.add(new Rectangle(canvas.getCursorPosition(event).x, canvas.getCursorPosition(event).y, 0, 0));
             canvas.resetClickToggle(false);
-            canvas.canvas.addEventListener("mousemove", Rectangle.onMouseMove);
+            canvas.canvasContainer.addEventListener("mousemove", Rectangle.onMouseMove);
         } else {
             Rectangle.addNodes(canvas.currentShape);
 
@@ -60,7 +60,7 @@ class Rectangle extends Shape {
                 });
                 canvas.currentShape.nodes[i].domElement.style.visibility = "hidden";
             }
-            canvas.canvas.removeEventListener("mousemove", Rectangle.onMouseMove);
+            canvas.canvasContainer.removeEventListener("mousemove", Rectangle.onMouseMove);
             canvas.resetClickToggle(true);
         }
     }
@@ -90,7 +90,7 @@ class Rectangle extends Shape {
 
     static onMouseDownNode(event) {
         event.target.classList.add("selected");
-        canvas.canvas.addEventListener("mousemove", Rectangle.onMouseMoveNode);
+        canvas.canvasContainer.addEventListener("mousemove", Rectangle.onMouseMoveNode);
     }
 
     static onMouseMoveNode(event) {
@@ -156,12 +156,12 @@ class Rectangle extends Shape {
     static onMouseUpNode(event) {
         let selectedNodeDOM = document.querySelector(".selected");
         selectedNodeDOM.classList.remove("selected");
-        canvas.canvas.removeEventListener("mousemove", Rectangle.onMouseMoveNode);
+        canvas.canvasContainer.removeEventListener("mousemove", Rectangle.onMouseMoveNode);
     }
 
     static removeEventListeners() {
-        canvas.canvas.removeEventListener("click", Rectangle.onMouseClick);
-        canvas.canvas.removeEventListener("mousemove", Rectangle.onMouseMove);
+        canvas.canvasContainer.removeEventListener("click", Rectangle.onMouseClick);
+        canvas.canvasContainer.removeEventListener("mousemove", Rectangle.onMouseMove);
     }
 
     static onMouseEnterNode(event) {

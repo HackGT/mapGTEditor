@@ -2,10 +2,12 @@ const svgns = "http://www.w3.org/2000/svg";
 const canvas = new Canvas("canvas", "canvas-container");
 
 window.addEventListener("load", () => {
-    let selectButton = document.getElementById("select");
-    let lineButton = document.getElementById("line");
-    let rectangleButton = document.getElementById("rectangle");
-    let polygonButton = document.getElementById("polygon");
+    const selectButton = document.getElementById("select");
+    const lineButton = document.getElementById("line");
+    const rectangleButton = document.getElementById("rectangle");
+    const polygonButton = document.getElementById("polygon");
+    const fileSelector = document.getElementById("image-upload-input");
+    const imageUpload = document.getElementById("image-upload");
 
     selectButton.addEventListener("click", () => {
         removeAllToolEventListeners();
@@ -16,18 +18,23 @@ window.addEventListener("load", () => {
 
     lineButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
-        canvas.canvas.addEventListener("click", Path.onMouseClick);
+        canvas.canvasContainer.addEventListener("click", Path.onMouseClick);
     });
 
     rectangleButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
-        canvas.canvas.addEventListener("click", Rectangle.onMouseClick);
+        canvas.canvasContainer.addEventListener("click", Rectangle.onMouseClick);
     });
 
     polygonButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
-        canvas.canvas.addEventListener("click", Polygon.onMouseClick);
+        canvas.canvasContainer.addEventListener("click", Polygon.onMouseClick);
     });
+
+    imageUpload.addEventListener("click", () => {
+        fileSelector.click();
+    })
+
 });
 
 function cleanUpOnSelectingNewTool() {
@@ -43,5 +50,5 @@ function cleanUpOnSelectingNewTool() {
 function removeAllToolEventListeners() {
     Path.removeEventListeners();
     Rectangle.removeEventListeners();
-    Polygon.removeEventListeners();
+    Polygon.removeEventListeners()
 }

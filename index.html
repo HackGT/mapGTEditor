@@ -11,6 +11,8 @@
             <button type="button" name="button" id="line">Line</button>
             <button type="button" name="button" id="rectangle">Rectangle</button>
             <button type="button" name="button" id="polygon">Polygon</button>
+            <button type="button" name="button" id="image-upload">Upload Image</button>
+            <input type="file" class="image-upload" id="image-upload-input" onchange="handleImageUpload(this.files)"></input>
     </div>
     <div id='canvas-container'>
         <svg id="canvas">
@@ -23,5 +25,6 @@
     <script src="js/tools/path.js"></script>
     <script src="js/tools/rectangle.js"></script>
     <script src="js/tools/polygon.js"></script>
+    <script src="js/tools/imageUpload.js"></script>
     <script src="js/main.js"></script>
 </html>

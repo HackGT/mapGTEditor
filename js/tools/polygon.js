@@ -70,7 +70,7 @@ class Polygon extends Shape {
         if (canvas.clickToggle) {
             canvas.add(new Polygon(canvas.getCursorPosition(event), [canvas.getCursorPosition(event)]));
             canvas.resetClickToggle(false);
-            canvas.canvas.addEventListener("mousemove", Polygon.onMouseMove);
+            canvas.canvasContainer.addEventListener("mousemove", Polygon.onMouseMove);
             canvas.currentShape.nodes.push(new Node(
                 canvas.getCursorPosition(event),
                 5, canvas.currentShape,
@@ -92,7 +92,7 @@ class Polygon extends Shape {
                 polygonObject.changeAttributes({
                     "d": dSlice
                 });
-                
+
                 lPoints = dSlice.slice(d.indexOf("L ") + 2).split(" L ");
                 polygonObject.lineToList = polygonObject.generateLineToListFromString(lPoints);
                 polygonObject.domGroup.classList.remove("temp");
@@ -105,7 +105,7 @@ class Polygon extends Shape {
                         "id": `${shapeId}/${i}`
                     });
                 }
-                canvas.canvas.removeEventListener("mousemove", Polygon.onMouseMove);
+                canvas.canvasContainer.removeEventListener("mousemove", Polygon.onMouseMove);
                 canvas.resetClickToggle(true);
                 polygonObject.hideNodes();
             } else {
@@ -139,7 +139,7 @@ class Polygon extends Shape {
 
     static onMouseDownNode(event) {
         event.target.classList.add("selected");
-        canvas.canvas.addEventListener("mousemove", Polygon.onMouseMoveNode);
+        canvas.canvasContainer.addEventListener("mousemove", Polygon.onMouseMoveNode);
     }
 
     static onMouseMoveNode(event) {
@@ -172,12 +172,12 @@ class Polygon extends Shape {
     static onMouseUpNode(event) {
         let selectedNodeDOM = document.querySelector(".selected");
         selectedNodeDOM.classList.remove("selected");
-        canvas.canvas.removeEventListener("mousemove", Polygon.onMouseMoveNode);
+        canvas.canvasContainer.removeEventListener("mousemove", Polygon.onMouseMoveNode);
     }
 
     static removeEventListeners() {
-        canvas.canvas.removeEventListener("click", Polygon.onMouseClick);
-        canvas.canvas.removeEventListener("mousemove", Polygon.onMouseMove);
+        canvas.canvasContainer.removeEventListener("click", Polygon.onMouseClick);
+        canvas.canvasContainer.removeEventListener("mousemove", Polygon.onMouseMove);
     }
 
     static onMouseEnterNode(event) {

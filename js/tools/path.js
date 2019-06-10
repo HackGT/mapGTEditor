@@ -44,7 +44,7 @@ class Path extends Shape {
         if (canvas.clickToggle) {
             canvas.add(new Path(canvas.getCursorPosition(event), canvas.getCursorPosition(event)));
             canvas.resetClickToggle(false);
-            canvas.canvas.addEventListener("mousemove", Path.onMouseMove);
+            canvas.canvasContainer.addEventListener("mousemove", Path.onMouseMove);
         } else {
             canvas.currentShape.domGroup.classList.remove("temp");
             let shapeId = canvas.shapes.length - 1;
@@ -55,7 +55,7 @@ class Path extends Shape {
                 });
                 canvas.currentShape.nodes[i].domElement.style.visibility = "hidden";
             }
-            canvas.canvas.removeEventListener("mousemove", Path.onMouseMove);
+            canvas.canvasContainer.removeEventListener("mousemove", Path.onMouseMove);
             canvas.resetClickToggle(true);
         }
     }
@@ -84,7 +84,7 @@ class Path extends Shape {
 
     static onMouseDownNode(event) {
         event.target.classList.add("selected");
-        canvas.canvas.addEventListener("mousemove", Path.onMouseMoveNode);
+        canvas.canvasContainer.addEventListener("mousemove", Path.onMouseMoveNode);
     }
 
     static onMouseMoveNode(event) {
@@ -120,7 +120,7 @@ class Path extends Shape {
     static onMouseUpNode(event) {
         let selectedNodeDOM = document.querySelector(".selected");
         selectedNodeDOM.classList.remove("selected");
-        canvas.canvas.removeEventListener("mousemove", Path.onMouseMoveNode);
+        canvas.canvasContainer.removeEventListener("mousemove", Path.onMouseMoveNode);
     }
 
     static onMouseEnterNode(event) {
@@ -134,7 +134,7 @@ class Path extends Shape {
     }
 
     static removeEventListeners() {
-        canvas.canvas.removeEventListener("click", Path.onMouseClick);
-        canvas.canvas.removeEventListener("mousemove", Path.onMouseMove);
+        canvas.canvasContainer.removeEventListener("click", Path.onMouseClick);
+        canvas.canvasContainer.removeEventListener("mousemove", Path.onMouseMove);
     }
 }
