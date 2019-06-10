@@ -5,6 +5,7 @@ window.addEventListener("load", () => {
     let selectButton = document.getElementById("select");
     let lineButton = document.getElementById("line");
     let rectangleButton = document.getElementById("rectangle");
+    let polygonButton = document.getElementById("polygon");
 
     selectButton.addEventListener("click", () => {
         removeAllToolEventListeners();
@@ -20,9 +21,13 @@ window.addEventListener("load", () => {
 
     rectangleButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
-
         canvas.canvas.addEventListener("click", Rectangle.onMouseClick);
-    })
+    });
+
+    polygonButton.addEventListener("click", () => {
+        cleanUpOnSelectingNewTool();
+        canvas.canvas.addEventListener("click", Polygon.onMouseClick);
+    });
 });
 
 function cleanUpOnSelectingNewTool() {
@@ -38,4 +43,5 @@ function cleanUpOnSelectingNewTool() {
 function removeAllToolEventListeners() {
     Path.removeEventListeners();
     Rectangle.removeEventListeners();
+    Polygon.removeEventListeners();
 }
