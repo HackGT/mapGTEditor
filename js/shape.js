@@ -32,6 +32,9 @@ class Shape {
         for (let attribute in attributes) {
             this.domElement.setAttributeNS(null, attribute, attributes[attribute]);
             this.attributes[attribute] = attributes[attribute];
+            if (this[attribute]) {
+                this[attribute] = attributes[attribute];
+            }
         }
     }
 
@@ -54,7 +57,7 @@ class Shape {
             canvas.shapes[shapeId].showNodes();
         } else {
             shape.selected = false;
-            canvas.shapes[shapeId].hideNodes(); 
+            canvas.shapes[shapeId].hideNodes();
         }
     }
 
@@ -77,7 +80,7 @@ class Shape {
     static onMouseUpNode(event) {
         console.error(errorMessageForHandlers);
     }
-    
+
     static removeEventListeners() {
         console.error(errorMessageForHandlers);
     }
