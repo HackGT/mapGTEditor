@@ -19,13 +19,6 @@
     margin: 0;
 }
 
-img.background-map {
-    position: relative;
-    display: block;
-    width: auto;
-    height: 500px;
-    top: -500px;
+.background-map {
     opacity: 0.3;
-    margin-left: auto;
-    margin-right: auto;
 }

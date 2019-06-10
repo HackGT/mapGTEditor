@@ -33,8 +33,7 @@ window.addEventListener("load", () => {
 
     imageUpload.addEventListener("click", () => {
         fileSelector.click();
-    })
-
+    });
 });
 
 function cleanUpOnSelectingNewTool() {
@@ -50,5 +49,5 @@ function cleanUpOnSelectingNewTool() {
 function removeAllToolEventListeners() {
     Path.removeEventListeners();
     Rectangle.removeEventListeners();
-    Polygon.removeEventListeners()
+    Polygon.removeEventListeners();
 }

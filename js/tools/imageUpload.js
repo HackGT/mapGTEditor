@@ -5,16 +5,18 @@ function handleImageUpload(files) {
         if (prevImg) {
             prevImg.remove();
         }
-        const img = document.createElement("img");
-        const imgContainer = document.getElementById("canvas-container");
+
+        const img = document.createElementNS(svgns, 'image');
+        img.setAttributeNS(null, "width", 1000);
+        img.setAttributeNS(null, "height", 500);
         img.classList.add("background-map");
-        img.file = file;
+        const imgContainer = document.getElementById("canvas");
         imgContainer.appendChild(img);
 
         const reader = new FileReader();
         reader.onload = (function(image) {
             return function(e) {
-                image.src = e.target.result;
+                img.setAttributeNS(null, "href", e.target.result);
             }
         })(img);
         reader.readAsDataURL(file);
