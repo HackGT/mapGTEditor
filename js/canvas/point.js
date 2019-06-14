@@ -23,6 +23,14 @@ class Point {
         this._y = y;
     }
 
+    equals(p) {
+        return (this.x == p.x) && (this.y == p.y);
+    }
+
+    toString() {
+        return `(${this.x}, ${this.y})`
+    }
+
     static add(p1, p2) {
         return new Point(p1.x + p2.x, p1.y + p2.y);
     }
