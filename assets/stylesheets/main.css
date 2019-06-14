@@ -9,20 +9,19 @@
     background-color: white;
 }
 
-.tools {
+.workspace-item {
     background-color: #DDDDDD;
     border: 4px solid #BDBDBD;
     border-radius: 20px;
     box-sizing: border-box;
+}
+
+#tools {
     width: 100%;
     height: 100%;
 }
 
 #details {
-    background-color: #DDDDDD;
-    border: 4px solid #BDBDBD;
-    border-radius: 20px;
-    box-sizing: border-box;
     width: 100%;
     height: 100%;
 }
@@ -36,7 +35,7 @@
         "title title title"
         "options options options"
         "toolbar canvas-cell details";
-    grid-template-columns: 100px 100fr 250px;
+    grid-template-columns: 100px 1fr 250px;
     grid-gap: 5px 15px;
 }
 
