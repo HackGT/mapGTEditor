@@ -1,16 +1,105 @@
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: #333333;
+}
+
+h1 {
+    display: inline;
+    margin: 0;
+    font-family: "DM Serif Text", Times
+}
+
+/* Grid-Container */
+.armour {
+    display: grid;
+    grid-template: repeat(10, 10%) / repeat(10, 10%);
+    height: 95vh;
+}
+
+/* Header */
+.helmet {
+    display: grid;
+    grid-template: repeat(2, 50%) / repeat(5, 20%);
+    grid-column: 1 / span 10;
+    grid-row: 1 / span 2;
+}
+
+.forehead {
+    display: flex;
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 1;
+    justify-content: center;
+    align-items: center;
+    background-color: #00b3ff;
+}
+
+.left-ear {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.left-eye {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.nose {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.right-eye {
+    grid-column: 4;
+    grid-row: 2;
+}
+
+.right-ear {
+    grid-column: 5;
+    grid-row: 2;
+}
+
+/* Body */
+.where-the-action-happens {
+    grid-column: 1 / span 10;
+    grid-row: 3 / span 8;
+}
+
+.right-hand {
+
+}
+
+.six-pack-abs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-hand {
+
+}
+
+/* Footer */
+.shoes {
+    height: 10vh;
+}
+
+
 #canvas {
     position: relative;
     top: 0px;
     left: 0px;
-    width: 1000px;
     height: 500px;
+    width: 1000px;
 }
 
 #canvas-container {
-    width: 1000px;
-    height: 500px;
     overflow: hidden;
     outline: solid;
+    height: 500px;
+    width: 1000px;
+    background-color: white;
 }
 
 .image-upload {
