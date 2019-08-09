@@ -5,10 +5,11 @@ class Rectangle extends Shape {
             "y": y,
             "width": width,
             "height": height,
-            "fill": "#ff54e8",
+            "fill": Rectangle.options.fillSettings.color,
             "stroke": "#000000",
-            "stroke-width": 3
+            "stroke-width": Rectangle.options.strokeSettings.thickness
         });
+
         this.x = x;
         this.y = y;
         this.width = width;
@@ -205,3 +206,5 @@ class Rectangle extends Shape {
         }
     }
 }
+
+Rectangle.options = new ToolOption("fill", "stroke");

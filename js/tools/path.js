@@ -6,7 +6,7 @@ class Path extends Shape {
         super('path', {
             "d": `M ${moveTo.x} ${moveTo.y} L ${lineTo.x} ${lineTo.y}`,
             "stroke": "#000000",
-            "stroke-width": 3
+            "stroke-width": Path.options.strokeSettings.thickness
         });
         this.moveTo = moveTo;
         this.lineTo = lineTo;
@@ -138,3 +138,5 @@ class Path extends Shape {
         canvas.canvas.removeEventListener("mousemove", Path.onMouseMove);
     }
 }
+
+Path.options = new ToolOption("stroke");

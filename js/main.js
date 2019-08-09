@@ -17,16 +17,19 @@ window.addEventListener("load", () => {
     lineButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
         canvas.canvas.addEventListener("click", Path.onMouseClick);
+        Path.options.render();
     });
 
     rectangleButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
         canvas.canvas.addEventListener("click", Rectangle.onMouseClick);
+        Rectangle.options.render();
     });
 
     polygonButton.addEventListener("click", () => {
         cleanUpOnSelectingNewTool();
         canvas.canvas.addEventListener("click", Polygon.onMouseClick);
+        Polygon.options.render();
     });
 });
 
