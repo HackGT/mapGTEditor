@@ -16,16 +16,16 @@ class ToolOption {
             "fill": () => this.fillOptions(),
             "stroke": () => this.strokeOptions()
         }
+
+        this.optionDOMElements = [];
+
+        this.options.forEach(enabledOption => {
+            this.optionDOMElements.push(this.optionMapping[enabledOption]());
+        });
     }
 
     fillOptions() {
-        this.fillSettings = {}; // Settings about the fill of a tool are stored in {ToolClass}.objects.fillSettings
-        this.fillSettings["color"] = "#000000";
-        var colorList = document.createElement("div");
-        colorList.style.display = "flex";
-        colorList.style.flexWrap = "wrap";
-
-        var colors = [
+        var startingColors = [
             "red",
             "orange",
             "yellow",
@@ -35,61 +35,93 @@ class ToolOption {
             "violet"
         ]
 
-        var colorOptionDivs = [];
+        this.fill = {}; // Settings about the fill of a tool are stored in {ToolClass}.objects.fillSettings
+        this.fill.color = startingColors[0];
 
-        colors.forEach(color => {
-            var colorElement = document.createElement("div");
-            colorElement.style.display = "inline-block"
-            colorElement.style.backgroundColor = color;
-            colorElement.style.width = "20px";
-            colorElement.style.height = "20px";
-            colorElement.style.margin = "5px";
-            colorElement.style.border = "solid black 1px";
+        var colorList = document.createElement("div");
+        colorList.style.display = "flex";
+        colorList.style.flexWrap = "wrap";
 
-            colorOptionDivs.push(colorElement);
-
-            colorElement.addEventListener("click", e => {
-                console.log(color);
-                this.fillSettings["color"] = color;
-
-                colorOptionDivs.forEach(element => {
-                    element.style.border = "solid black 1px";
-                });
-
-                colorElement.style.border = "solid white 1px";
-            });
-
+        // Create colored square divs for initial palette
+        startingColors.forEach(color => {
+            var colorElement = this.createColorSelectorElement(color);
             colorList.appendChild(colorElement);
         })
 
         var optionsElement = document.createElement("div");
         var optionsTitle = document.createElement("span");
-        optionsTitle.textContent = "Fill Color";
+        optionsTitle.id = "options-title";
+        optionsTitle.textContent = `Fill Color: ${this.fill.color}`;
+
+        var colorSelectTextbox = document.createElement("input");
+        var colorSelectButton = document.createElement("button");
+
+        colorSelectButton.textContent = "Add";
+
+        colorSelectButton.addEventListener("click", e => {
+            var textboxValue = colorSelectTextbox.value;
+
+            if (isValidCSSColor(textboxValue)) {
+                var element = this.createColorSelectorElement(textboxValue);
+                colorList.appendChild(element);
+            } else {
+                alert("Invalid color entered");
+            }
+        });
+
+        colorSelectTextbox.addEventListener("keyup", e => {
+            if (e.keyCode === 13) {
+                colorSelectButton.click();
+            }
+        })
 
         optionsElement.appendChild(optionsTitle);
         optionsElement.appendChild(colorList);
+        optionsElement.appendChild(colorSelectTextbox);
+        optionsElement.appendChild(colorSelectButton);
 
         return optionsElement;
     }
 
+    // Creates a colored square div for selecting fill color and attaches a click event listener
+    createColorSelectorElement(color) {
+        var element = document.createElement("div");
+        var lowercasedColor = color.toLowerCase();
+    
+        element.style.display = "inline-block"
+        element.style.backgroundColor = lowercasedColor;
+        element.style.width = "20px";
+        element.style.height = "20px";
+        element.style.margin = "5px";
+        element.style.border = "solid black 1px";
+    
+        element.addEventListener("click", e => {
+            console.log(lowercasedColor);
+            this.fill.color = lowercasedColor;
+            document.getElementById("options-title").textContent = `Fill Color: ${this.fill.color}`;
+        });    
+    
+        return element;
+    }
+
     strokeOptions() {
-        this.strokeSettings = {}; // Settings about the stroke of a tool are stored in {ToolClass}.options.strokeSettings
-        this.strokeSettings["thickness"] = 3;
+        this.stroke = {}; // Settings about the stroke of a tool are stored in {ToolClass}.options.strokeSettings
+        this.stroke["thickness"] = 3;
 
         var thicknessSlider = document.createElement("input");
         thicknessSlider.type = "range";
         thicknessSlider.min = 1;
         thicknessSlider.max = 10;
-        thicknessSlider.value = this.strokeSettings["thickness"];
+        thicknessSlider.value = this.stroke["thickness"];
 
         thicknessSlider.addEventListener("input", e => {
-            this.strokeSettings["thickness"] = e.target.value;
-            optionsTitle.textContent = `Stroke Thickness: ${this.strokeSettings['thickness']}`;
+            this.stroke["thickness"] = e.target.value;
+            optionsTitle.textContent = `Stroke Thickness: ${this.stroke['thickness']}`;
         })
 
         var optionsElement = document.createElement("div");
         var optionsTitle = document.createElement("span");
-        optionsTitle.textContent = `Stroke Thickness: ${this.strokeSettings['thickness']}`;
+        optionsTitle.textContent = `Stroke Thickness: ${this.stroke['thickness']}`;
 
         optionsElement.appendChild(optionsTitle);
         optionsElement.appendChild(thicknessSlider);
@@ -106,8 +138,16 @@ class ToolOption {
             toolCustomizationPanel.removeChild(toolCustomizationPanel.lastChild);
         }
 
-        this.options.forEach(enabledOption => {
-            toolCustomizationPanel.appendChild(this.optionMapping[enabledOption]());
+        this.optionDOMElements.forEach(optionDOM => {
+            toolCustomizationPanel.appendChild(optionDOM);
         });
     }
+}
+
+// Checks if given string is a valid CSS color
+function isValidCSSColor(string) {
+    var s = new Option().style;
+    s.color = string; // If the string is not valid, s.color should remain an empty string
+
+    return s.color !== "";
 }

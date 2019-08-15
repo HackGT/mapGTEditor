@@ -5,9 +5,9 @@ class Rectangle extends Shape {
             "y": y,
             "width": width,
             "height": height,
-            "fill": Rectangle.options.fillSettings.color,
+            "fill": Rectangle.options.fill.color,
             "stroke": "#000000",
-            "stroke-width": Rectangle.options.strokeSettings.thickness
+            "stroke-width": Rectangle.options.stroke.thickness
         });
 
         this.x = x;

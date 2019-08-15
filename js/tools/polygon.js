@@ -3,7 +3,7 @@ class Polygon extends Shape {
         super('path', {
             "d": `M ${moveTo.x} ${moveTo.y}`,
             "stroke": "#000000",
-            "stroke-width": Polygon.options.strokeSettings.thickness,
+            "stroke-width": Polygon.options.stroke.thickness,
             "fill": "none"
         });
         this.moveTo = moveTo;

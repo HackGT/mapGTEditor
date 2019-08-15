@@ -6,7 +6,7 @@ class Path extends Shape {
         super('path', {
             "d": `M ${moveTo.x} ${moveTo.y} L ${lineTo.x} ${lineTo.y}`,
             "stroke": "#000000",
-            "stroke-width": Path.options.strokeSettings.thickness
+            "stroke-width": Path.options.stroke.thickness
         });
         this.moveTo = moveTo;
         this.lineTo = lineTo;
