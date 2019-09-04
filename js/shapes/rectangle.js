@@ -8,7 +8,7 @@ class Rectangle extends Shape {
     
     render() {
         this.changeAttributes({
-            "d": this._getPathString()
+            "d": this._getD()
         });
     }
 
@@ -22,7 +22,7 @@ class Rectangle extends Shape {
     /* Private methods */
 
     // used to return a d string that looks like a rectangle :)
-    _getPathString() {
+    _getD() {
         const moveTo = this.initialCursorPosition; 
         const lineTos = [
             Point.add(moveTo ,new Point(this.width, 0)),
