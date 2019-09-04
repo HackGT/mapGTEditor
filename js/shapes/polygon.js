@@ -7,16 +7,26 @@ class Polygon extends Shape {
                 values: [
                     this.initialCursorPosition.x,
                     this.initialCursorPosition.y
-                ]
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
             },
             {
                 type: "L",
                 values: [
                     this.initialCursorPosition.x,
                     this.initialCursorPosition.y
-                ]
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
             }
         ]; // abstraction to easily update and deal with d strings for the path :(
+
+        this.eventListeners = [
+            {   
+                event: "click",
+                type: "select",
+                callBack: () => {console.log("I am selecting a shape in here")}
+            }
+        ]
         this.render();
     }
 
@@ -24,6 +34,7 @@ class Polygon extends Shape {
         this.changeAttributes({
             "d": this._getD()
         });
+        this.updateNodes();
     }
 
     registerClick(newCursorPosition) {
@@ -32,34 +43,28 @@ class Polygon extends Shape {
             values: [
                 newCursorPosition.x,
                 newCursorPosition.y
-            ]
+            ],
+            node: this.canvas.createNode(new Point(newCursorPosition.x, newCursorPosition.y), this)
         });
         this.clickedCursorPositions.push(newCursorPosition);
     }
 
-    addNodes() {
-        if (!this.nodes) {
-            // create new nodes and add
-            for (let part of dParts) {
-                // check if there are only two values
-                const values = part.values;
-                if (values.length === 2) {
-                    // finish this off
-                }
-                // if not, don't add nodes
+    updateNodes() {
+        for (let part of this.dParts) {
+            // part.node can be null if the specific dPart does not require a node
+            if (part.node) {
+                part.node.updateLocation(new Point(part.values[0], part.values[1]));
             }
-        } else {
-            // update the existing nodes
         }
     }
 
     // completes the polygon shape
     completeShape() {
-        console.log('completing shape')
         this.dParts.push({
             type: "Z",
             values: []
         });
+        this.hideNodes();
         this.render();
     }
 
@@ -70,13 +75,12 @@ class Polygon extends Shape {
     // updates the last two coordinates in the d string
     // mainly used for updating the UI
     updateLastCursorPosition(newCursorPosition) {
-        this.dParts[this.dParts.length - 1] = {
-            type: "L",
-            values: [
-                newCursorPosition.x,
-                newCursorPosition.y
-            ]
-        }
+        const dPart = this.dParts[this.dParts.length - 1];
+        dPart.values = [
+            newCursorPosition.x,
+            newCursorPosition.y
+        ];
+        dPart.node.updateLocation(new Point(newCursorPosition.x, newCursorPosition.y));
     }
 
     // used in eventListeners.js

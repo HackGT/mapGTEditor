@@ -12,5 +12,6 @@ class RectangleTool extends Tool {
                 "invoke": false,
             }
         ]);
+        this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button
     }
 }

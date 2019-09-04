@@ -15,8 +15,8 @@ class Node {
         this.location = location; // where the node is located
         
         // setting the location of the node
-        this.domElement.setAttributeNS(null, "x", this.location.x);
-        this.domElement.setAttributeNS(null, "y", this.location.y);
+        this.domElement.setAttributeNS(null, "cx", this.location.x);
+        this.domElement.setAttributeNS(null, "cy", this.location.y);
 
         this.canvas.nodesContainer.appendChild(this.domElement); // adding the node to the nodes container
 
@@ -27,13 +27,13 @@ class Node {
 
     // displays the node
     show() {
-        this.domElement.setAttributeNS(null, "visibility", "hidden");
+        this.domElement.setAttributeNS(null, "visibility", "visible");
         // TODO: add event listeners
     }
 
     // hides the node
     hide() {
-        this.domElement.setAttributeNS(null, "visibility", "visible");
+        this.domElement.setAttributeNS(null, "visibility", "hidden");
         // TODO: remove event listeners
     }
 
@@ -41,6 +41,11 @@ class Node {
     connectTo(node) {
         this.connections.push(node);
         node.connections.push(this);
+    }
+
+    updateLocation(location) {
+        this.domElement.setAttributeNS(null, "x", location.x);
+        this.domElement.setAttributeNS(null, "y", location.y);
     }
 
     /* Private methods */

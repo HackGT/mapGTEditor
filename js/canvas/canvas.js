@@ -63,7 +63,7 @@ class Canvas {
 
     // adds the shape to the canvas dom
     add(shape) {
-        this.domElement.appendChild(shape.domGroup);
+        this.domElement.insertBefore(shape.domGroup, this.domElement.firstChild);
         this.clicked = false;
         this.currentShape = shape;
 
@@ -80,8 +80,15 @@ class Canvas {
     }
 
     createNode(location, shape=this.currentShape) {
-        const node = new Node(this, location);
+        const node = new Node(this, location, "circle", {
+            "fill": "cyan",
+            "stroke": "black",
+            "stroke-width": "3px",
+            "r": "5px"
+        });
         node.shapes.push(shape);
+        shape.nodes.push(node);
+        return node;
     }
     
     /* Private methods */

@@ -1,5 +1,6 @@
 /* All event listener callbacks go in this file */
 
+/* --- RECTANGLE EVENT LISTENERS --- */
 function onMouseClickRectangle() {
     if (this.canvas.clicked) {
         this.canvas.add(new Rectangle(this.canvas));
@@ -13,7 +14,9 @@ function onMouseMoveRectangle(event) {
     const rect = this.canvas.currentShape;
     rect.registerClick(this.canvas.getCursorPosition(event));
 }
+/* --- END --- */
 
+/* --- POLYGON EVENT LISTENERS ---*/
 function onMouseClickPolygon(event) {
     if (this.canvas.clicked) {
         this.canvas.add(new Polygon(this.canvas));
@@ -38,3 +41,10 @@ function onMouseMovePolygon(event) {
     polygon.updateLastCursorPosition(this.canvas.getCursorPosition(event));
     polygon.render();
 }
+/* --- END ---*/
+
+/* --- SELECT EVENT LISTENERS --- */
+function onMouseClickSelect(event) {
+    console.log("This listener is now active");
+}
+/* --- END --- */

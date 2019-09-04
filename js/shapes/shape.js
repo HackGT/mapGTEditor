@@ -17,6 +17,25 @@ class Shape {
         this.clickedCursorPositions = [this.canvas.getCursorPosition()]; // list containing all click locations when drawing the shape
         this.initialCursorPosition = this.clickedCursorPositions[0]; // the first click location when the shape was drawn
 
+        this.eventListeners = []; // list of shape specific event listeners
+        // examples include: 
+            // selecting the shape
+            // dragging the shape
+            // node specific event listeners
+        // must be initialized in the specific shape class
+
+        /*
+            Refer to Tool.js for a short explanation of the event listener abstraction used.
+
+            eventListeners should be populated with objects of the following form
+            {
+                "event": <eventType>,
+                "callBack": <callBackFunction>,
+                "invoke": <true or false>,
+                "type": <what is this going to be used for> [THIS IS OPTIONAL]
+            }
+        */
+
         // appends the shape to the canvas if true
         if (append) {
             this.canvas.domElement.appendChild(this.domGroup);

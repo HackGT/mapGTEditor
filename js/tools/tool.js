@@ -25,8 +25,13 @@ class Tool {
                 "event": <eventType>,
                 "callBack": <callBackFunction>,
                 "invoke": <true or false>,
+                "type": <what is this going to be used for> [THIS IS OPTIONAL]
             }
+            Note: the "type" attribute is populated mainly in the event listener attributes for shape specific classes
+            It is used to decide which event listener needs to be toggled
 
+            You may not need it when you are creating a new Tool class.
+            
             Use editEventListenerInvokeStatus() to toggle event listeners
         */
        
@@ -35,8 +40,6 @@ class Tool {
         for (let i = 0; i < this.eventListeners.length; i++) {
             this.eventListeners[i].callBack = this.eventListeners[i].callBack.bind(this);
         }
-
-        this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button
     }
 
     // method gets fired whenever the tool is clicked
