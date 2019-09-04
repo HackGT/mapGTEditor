@@ -1,3 +1,5 @@
+/* All event listener callbacks go in this file */
+
 function onMouseClickRectangle() {
     if (this.canvas.clicked) {
         this.canvas.add(new Rectangle(this.canvas));

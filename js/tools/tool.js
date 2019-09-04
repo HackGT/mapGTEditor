@@ -1,27 +1,51 @@
 class Tool {
     constructor(name, canvas, eventListeners) {
-        this.name = name;
-        // this.active = false;
-        this.domElement = document.createElement("button");
-        this.domElement.innerHTML = this.name;
+        this.name = name; // the name of the tool
+        this.domElement = document.createElement("button"); // the button for the tool
+
+        this.domElement.innerHTML = this.name; // updating the button text
+
+        // looking for a container div to append the tools to
         const toolsDiv = document.querySelector(".tools");
         if (toolsDiv) {
             toolsDiv.appendChild(this.domElement);
         } else {
             console.err("No container div (with class `tool`) found");
         }
-        this.canvas = canvas;
-        this.eventListeners = eventListeners;
+
+        this.canvas = canvas; // the canvas that the tools are associated with
+        this.eventListeners = eventListeners; // list of event listeners that the tool supports / needs
+
+        /*
+            THE EVENT LISTENER ABSTRACTION USED IN THE CODEBASE
+
+            To allow for easy manipulation of event listeners, the following abstraction is used
+            Every event listener is an object that looks like this:
+            {
+                "event": <eventType>,
+                "callBack": <callBackFunction>,
+                "invoke": <true or false>,
+            }
+
+            Use editEventListenerInvokeStatus() to toggle event listeners
+        */
+       
+        // binding the event listeners to the tool
+        // Chose binding since all event listeners are stored in eventListeners.js to prevent bloat in this class
         for (let i = 0; i < this.eventListeners.length; i++) {
             this.eventListeners[i].callBack = this.eventListeners[i].callBack.bind(this);
         }
-        this.domElement.addEventListener("click", this.onClickTool.bind(this));
+
+        this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button
     }
 
+    // method gets fired whenever the tool is clicked
     onClickTool() {
         this.canvas.setCurrentTool(this);
     }
 
+    // updates the status of the event listener (active or not)
+    // this method works well with the abstraction for event listeners used in the codebase
     editEventListenerInvokeStatus(type, invoke) {
         let els = this.eventListeners;
 
