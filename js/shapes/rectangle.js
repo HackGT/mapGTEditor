@@ -1,6 +1,7 @@
 class Rectangle extends Shape {
     constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
         super(canvas, "rect", attributes);
+        this.clickedCursorPositions = [this.initialCursorPosition, this.initialCursorPosition]; // setting this for rectangle specific implementation
         this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x; // width of the rectangle
         this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y; // height of the rectangle
         this.render();
@@ -12,7 +13,7 @@ class Rectangle extends Shape {
         });
     }
 
-    registerNewClick(newCursorPosition) {
+    registerClick(newCursorPosition) {
         this.clickedCursorPositions[1] = newCursorPosition;
         this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x;
         this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y;

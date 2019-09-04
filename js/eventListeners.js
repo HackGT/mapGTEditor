@@ -11,7 +11,7 @@ function onMouseClickRectangle() {
 
 function onMouseMoveRectangle(event) {
     const rect = this.canvas.currentShape;
-    rect.updateClickedCursorPositions(this.canvas.getCursorPosition(event));
+    rect.registerClick(this.canvas.getCursorPosition(event));
 }
 
 function onMouseClickPolygon(event) {
@@ -28,7 +28,7 @@ function onMouseClickPolygon(event) {
             polygon.completeShape();
             this.editEventListenerInvokeStatus("mousemove", false);
         } else {
-            polygon.updateClickedCursorPositions(currentClickPosition);
+            polygon.registerClick(currentClickPosition);
         }
     }
 }

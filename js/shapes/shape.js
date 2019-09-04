@@ -1,9 +1,9 @@
 class Shape {
     /* NOTE: CURRENTLY DOESN'T SUPPORT MULTIPLE DOM ELEMENTS PER SHAPE */
-    constructor(canvas, name, attributes={}, append=false) {
+    constructor(canvas, name, attributes={}, svgTag='path',append=false) {
         this.canvas = canvas; // the canvas in which the shape is to be drawn
         this.name = name; // name of the shape
-        this.domElement = document.createElementNS(svgns, 'path'); // dom of the shape; defaults to path since it is easier to write generic code
+        this.domElement = document.createElementNS(svgns, svgTag); // dom of the shape; defaults to path since it is easier to write generic code
         this.domGroup = document.createElementNS(svgns, 'g'); // the group that the contains the parts of the shape
         
         this.domGroup.appendChild(this.domElement); // adds the dom element to the group
@@ -42,6 +42,27 @@ class Shape {
         this.attributes = attributes;
     }
 
+    /* ---- Node specific methods ---- */
+
+    // adds nodes to the shape
+    addNodes() {
+        console.error("addNodes() is shape specific and needs to be implemented");
+    }
+
+    showNodes() {
+        for (let node of this.nodes) {
+            node.show();
+        }
+    }
+
+    hideNodes() {
+        for (let node of this.nodes) {
+            node.hide();
+        }
+    }
+
+    /* ---- END ---- */
+
     /* Methods that are shape specific */
 
     // renders the shape to the canvas
@@ -51,7 +72,7 @@ class Shape {
 
     // used for registering a new click and updating the list of clicked positions
     // THIS FUNCTION SHOULD ONLY BE USED WHEN THE SHAPE IS BEING CREATED
-    registerNewClick(newCursorPosition) {
+    registerClick(newCursorPosition) {
         console.error("updateClickedCursorPositions() needs to be implemented for this shape");
     }
 }

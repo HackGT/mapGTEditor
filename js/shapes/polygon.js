@@ -26,7 +26,7 @@ class Polygon extends Shape {
         });
     }
 
-    registerNewClick(newCursorPosition) {
+    registerClick(newCursorPosition) {
         this.dParts.push({
             type: "L",
             values: [
@@ -35,6 +35,22 @@ class Polygon extends Shape {
             ]
         });
         this.clickedCursorPositions.push(newCursorPosition);
+    }
+
+    addNodes() {
+        if (!this.nodes) {
+            // create new nodes and add
+            for (let part of dParts) {
+                // check if there are only two values
+                const values = part.values;
+                if (values.length === 2) {
+                    // finish this off
+                }
+                // if not, don't add nodes
+            }
+        } else {
+            // update the existing nodes
+        }
     }
 
     // completes the polygon shape

@@ -16,6 +16,11 @@ class Canvas {
             console.err("Could not find a container to put the canvas svg in");
         }
 
+        // creating an SVG group that will store all nodes
+        this.nodesContainer = document.createElementNS(svgns, "g");
+        this.nodesContainer.setAttributeNS(null, "id", "nodes")
+        this.domElement.appendChild(this.nodesContainer);
+
         this.shapes = []; // stores a list of all COMPLETE shapes currently drawn on the canvas
         this.currentShape = null; // the shape that is selected, or is being drawn
 
@@ -74,6 +79,11 @@ class Canvas {
         this._setEventListeners(tool.eventListeners);
     }
 
+    createNode(location, shape=this.currentShape) {
+        const node = new Node(this, location);
+        node.shapes.push(shape);
+    }
+    
     /* Private methods */
     
     // updates the event listeners in the canvas
