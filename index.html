@@ -1,70 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Tools
-        </title>
-        <link rel="stylesheet" href="assets/stylesheets/main.css">
-        <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="armour">
-            <div class="helmet">
-                <div class="forehead">
-                    <h1>MapGT Editor</h1>
-                </div>
-                <div class="left-ear">
-
-                </div>
-                <div class="left-eye">
-
-                </div>
-                <div class="nose">
-
-                </div>
-                <div class="right-eye">
-
-                </div>
-                <div class="right-ear">
-
-                </div>
-            </div>
-
-            <div class="where-the-action-happens">
-                <div class="right-hand">
-                    <div class="tools">
-                            <button type="button" name="button" id="select">Select</button>
-                            <button type="button" name="button" id="line">Line</button>
-                            <button type="button" name="button" id="rectangle">Rectangle</button>
-                            <button type="button" name="button" id="polygon">Polygon</button>
-                            <button type="button" name="button" id="image-upload">Upload Image</button>
-                            <input type="file" class="image-upload" id="image-upload-input" onchange="handleImageUpload(this.files)"></input>
-                    </div>
-                </div>
-                <div class="six-pack-abs">
-                    <div id='canvas-container'>
-                        <svg id="canvas">
-                        </svg>
-                    </div>
-                </div>
-                <div class="left-hand">
-
-                </div>
-            </div>
-        </div>
-
-        <div class="shoes">
-        </div>
-        
-        <script src="js/canvas/point.js"></script>
-        <script src="js/canvas/canvas.js"></script>
-        <script src="js/canvas/shape.js"></script>
-        <script src="js/selectorNode/selectorNode.js"></script>
-        <script src="js/tools/path.js"></script>
-        <script src="js/tools/rectangle.js"></script>
-        <script src="js/tools/polygon.js"></script>
-        <script src="js/tools/imageUpload.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+<html>
+  <head>
+    <title>MapGTEditor</title>
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+  </head>
+  <body>
+    <div class="tools"></div>
+    <div id="canvas-container"></div>
+    <script src="js/index.js"></script>
+    <script src="js/eventListeners.js"></script>
+    <script src="js/canvas/Canvas.js"></script>
+    <script src="js/canvas/Point.js"></script>
+    <script src="js/tools/tool.js"></script>
+    <script src="js/tools/rectangleTool.js"></script>
+    <script src="js/tools/polygonTool.js"></script>
+    <script src="js/shapes/shape.js"></script>
+    <script src="js/shapes/rectangle.js"></script>
+    <script src="js/shapes/polygon.js"></script>
+  </body>
 </html>

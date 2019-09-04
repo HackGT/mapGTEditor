@@ -1,0 +1,22 @@
+-
+    var scripts = [
+        "js/index.js",
+        "js/eventListeners.js",
+        "js/canvas/canvas_new.js",
+        "js/canvas/point.js",
+        "js/tools/tool.js",
+        "js/tools/rectangleTool.js",
+        "js/shapes/shape.js",
+        "js/shapes/rectangle.js",
+    ]
+-var tools = ["rectangle"]
+doctype html
+html
+    head
+        title MapGTEditor
+        link(rel="stylesheet" href="assets/stylesheets/main.css")
+    body
+        div.tools
+        div#canvas-container
+        each script in scripts
+            script(src=script)

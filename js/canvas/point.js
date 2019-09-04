@@ -1,6 +1,3 @@
-/**
- * This class represents a Point on the webpage
- */
 class Point {
     constructor(x, y) {
         this.x = x;
