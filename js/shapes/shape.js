@@ -3,7 +3,7 @@ class Shape {
     constructor(canvas, name, attributes={}, append=false) {
         this.canvas = canvas; // the canvas in which the shape is to be drawn
         this.name = name; // name of the shape
-        this.domElement = document.createElementNS(svgns, 'path'); // dom of the shape
+        this.domElement = document.createElementNS(svgns, 'path'); // dom of the shape; defaults to path since it is easier to write generic code
         this.domGroup = document.createElementNS(svgns, 'g'); // the group that the contains the parts of the shape
         
         this.domGroup.appendChild(this.domElement); // adds the dom element to the group
@@ -14,7 +14,7 @@ class Shape {
         this.nodes = []; // set of all nodes that the shape has
         // nodes are used for resizing and editing the shape
 
-        this.clickedCursorPositions = [this.canvas.getCursorPosition(), this.canvas.getCursorPosition()]; // list containing all click locations when drawing the shape
+        this.clickedCursorPositions = [this.canvas.getCursorPosition()]; // list containing all click locations when drawing the shape
         this.initialCursorPosition = this.clickedCursorPositions[0]; // the first click location when the shape was drawn
 
         // appends the shape to the canvas if true
@@ -49,8 +49,9 @@ class Shape {
         console.error("render() method needs to be implemented for this shape");
     }
 
-    // TODO: RENAME THIS FUNCTION
-    updateClickedCursorPositions(newCursorPosition) {
+    // used for registering a new click and updating the list of clicked positions
+    // THIS FUNCTION SHOULD ONLY BE USED WHEN THE SHAPE IS BEING CREATED
+    registerNewClick(newCursorPosition) {
         console.error("updateClickedCursorPositions() needs to be implemented for this shape");
     }
 }

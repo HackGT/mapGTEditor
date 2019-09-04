@@ -1,8 +1,8 @@
 class Rectangle extends Shape {
     constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
         super(canvas, "rect", attributes);
-        this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x;
-        this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y;
+        this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x; // width of the rectangle
+        this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y; // height of the rectangle
         this.render();
     }
     
@@ -12,7 +12,7 @@ class Rectangle extends Shape {
         });
     }
 
-    updateClickedCursorPositions(newCursorPosition) {
+    registerNewClick(newCursorPosition) {
         this.clickedCursorPositions[1] = newCursorPosition;
         this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x;
         this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y;
@@ -20,6 +20,8 @@ class Rectangle extends Shape {
     }
 
     /* Private methods */
+
+    // used to return a d string that looks like a rectangle :)
     _getPathString() {
         const moveTo = this.initialCursorPosition; 
         const lineTos = [
