@@ -2,11 +2,13 @@
 
 /* --- RECTANGLE EVENT LISTENERS --- */
 function onMouseClickRectangle() {
+    const rect = this.canvas.currentShape;
     if (this.canvas.clicked) {
         this.canvas.add(new Rectangle(this.canvas));
         this.editEventListenerInvokeStatus("mousemove", true);
     } else {
         this.editEventListenerInvokeStatus("mousemove", false);
+        rect.registerClick(this.canvas.getCursorPosition(event));
     }
 }
 
@@ -26,8 +28,10 @@ function onMouseClickPolygon(event) {
         const currentClickPosition = this.canvas.getCursorPosition(event);
         const lastClickPosition = polygon.getLastClickPosition();
 
-        // TODO: change this to clicking within a locality later
         if (currentClickPosition.equals(polygon.initialCursorPosition) || currentClickPosition.equals(lastClickPosition)) {
+            polygon.nodes[polygon.nodes.length - 1].domElement.remove();
+            polygon.nodes.pop();
+            polygon.dParts.pop(polygon.dParts.length - 2);
             polygon.completeShape();
             this.editEventListenerInvokeStatus("mousemove", false);
         } else {
@@ -42,9 +46,3 @@ function onMouseMovePolygon(event) {
     polygon.render();
 }
 /* --- END ---*/
-
-/* --- SELECT EVENT LISTENERS --- */
-function onMouseClickSelect(event) {
-    console.log("This listener is now active");
-}
-/* --- END --- */

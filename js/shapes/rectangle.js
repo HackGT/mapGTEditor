@@ -4,6 +4,16 @@ class Rectangle extends Shape {
         this.clickedCursorPositions = [this.initialCursorPosition, this.initialCursorPosition]; // setting this for rectangle specific implementation
         this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x; // width of the rectangle
         this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y; // height of the rectangle
+        this.dParts = [
+            {
+                type: "M",
+                values: [
+                    this.initialCursorPosition.x,
+                    this.initialCursorPosition.y
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+            }
+        ];
         this.render();
     }
     
@@ -15,9 +25,61 @@ class Rectangle extends Shape {
 
     registerClick(newCursorPosition) {
         this.clickedCursorPositions[1] = newCursorPosition;
+        this.dParts = [
+            {
+                type: "M",
+                values: [
+                    this.initialCursorPosition.x,
+                    this.initialCursorPosition.y
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+            },
+            {
+                type: "L",
+                values: [
+                    newCursorPosition.x,
+                    this.initialCursorPosition.y
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+            },
+            {
+                type: "L",
+                values: [
+                    newCursorPosition.x,
+                    newCursorPosition.y
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+            },
+            {
+                type: "L",
+                values: [
+                    this.initialCursorPosition.x,
+                    newCursorPosition.y
+                ],
+                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+            }
+        ]
         this.width = this.clickedCursorPositions[1].x - this.initialCursorPosition.x;
         this.height = this.clickedCursorPositions[1].y - this.initialCursorPosition.y;
         this.render();
+    }
+
+    updateNodes() {
+        for (let part of this.dParts) {
+            // part.node can be null if the specific dPart does not require a node
+            if (part.node) {
+                part.node.updateLocation(new Point(part.values[0], part.values[1]));
+            }
+        }
+    }
+
+    updateDParts(index, values) {
+        if (index > this.dParts.length) {
+            console.warn("Looks like you are doing some janky stuff with dParts. Please check your code!");
+        } else {
+            this.dParts[index].values = values;
+            this.render();
+        }
     }
 
     /* Private methods */

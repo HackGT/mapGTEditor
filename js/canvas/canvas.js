@@ -57,7 +57,7 @@ class Canvas {
     // ID will be used to uniquely identify shapes
     // ping @1ntEgr8 before implementing
     getNewId() {
-        return 1;
+        return this.shapes.length;
     }
     /* ---- END ---- */
 
@@ -80,7 +80,7 @@ class Canvas {
     }
 
     createNode(location, shape=this.currentShape) {
-        const node = new Node(this, location, "circle", {
+        const node = new Node(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, "circle", {
             "fill": "cyan",
             "stroke": "black",
             "stroke-width": "3px",
@@ -89,6 +89,10 @@ class Canvas {
         node.shapes.push(shape);
         shape.nodes.push(node);
         return node;
+    }
+
+    updateNodeId(node, shape) {
+        node.id += (shape.id + "/" + shape.nodes.length)
     }
     
     /* Private methods */
@@ -113,5 +117,9 @@ class Canvas {
             this.domElement.removeEventListener(listener.event, listener.callBack);
         });
         this.currentEventListeners = null;
+    }
+
+    _getNewNodeID(shape) {
+        return shape.id + "/" + shape.nodes.length;
     }
 }

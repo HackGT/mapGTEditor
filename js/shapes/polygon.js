@@ -1,6 +1,35 @@
 class Polygon extends Shape {
     constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
         super(canvas, "polygon", attributes);
+
+        this.eventListeners = [
+            {   
+                event: "click",
+                type: "select",
+                callBack: this.onSelect.bind(this)
+            }
+        ];
+        this.nodeEventListeners = [
+            {
+                event: "mousedown",
+                type: "node",
+                callBack: onMouseDownNodePolygon,
+                invoke: false
+            },
+            {
+                event: "mousemove",
+                type: "node",
+                callBack: onMouseMoveNodePolygon,
+                invoke: false
+            },
+            {
+                event: "mouseup",
+                type: "node",
+                callBack: onMouseUpNodePolygon,
+                invoke: false
+            }
+        ]
+        
         this.dParts = [
             {
                 type: "M",
@@ -20,13 +49,6 @@ class Polygon extends Shape {
             }
         ]; // abstraction to easily update and deal with d strings for the path :(
 
-        this.eventListeners = [
-            {   
-                event: "click",
-                type: "select",
-                callBack: () => {console.log("I am selecting a shape in here")}
-            }
-        ]
         this.render();
     }
 
@@ -57,6 +79,16 @@ class Polygon extends Shape {
             }
         }
     }
+
+    updateDParts(index, values) {
+        if (index > this.dParts.length) {
+            console.warn("Looks like you are doing some janky stuff with dParts. Please check your code!");
+        } else {
+            this.dParts[index].values = values;
+            this.render();
+        }
+    }
+
 
     // completes the polygon shape
     completeShape() {

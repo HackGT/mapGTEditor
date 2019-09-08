@@ -18,6 +18,9 @@ class Shape {
         this.initialCursorPosition = this.clickedCursorPositions[0]; // the first click location when the shape was drawn
 
         this.eventListeners = []; // list of shape specific event listeners
+        this.nodeEventListeners = []; // list of node event listeners
+        
+        this.selected = false;
         // examples include: 
             // selecting the shape
             // dragging the shape
@@ -94,4 +97,49 @@ class Shape {
     registerClick(newCursorPosition) {
         console.error("updateClickedCursorPositions() needs to be implemented for this shape");
     }
+
+    onSelect() {
+        if (!this.selected) {
+            this.showNodes();
+            this.toggleNodeEventListeners(true);
+        } else {
+            this.hideNodes();
+            this.toggleNodeEventListeners(false);
+        }
+        this.selected = !this.selected;
+    }
+
+    toggleNodeEventListeners(activate) {
+        if (activate) {
+            for (let node of this.nodes) {
+                node.editEventListenerInvokeStatus("mousedown", true, node);
+            }
+        } else {
+            for (let node of this.nodes) {
+                node.editEventListenerInvokeStatus("mousedown", false, node);
+            }
+        }
+    }
+    /*
+        Node event listeners
+
+        I need two event listeners
+            onMouseDown
+            onMouseMove
+            onMouseUp
+
+        onMouseDown
+            identifies the node that is clicked
+            toggles onMouseMove for that node
+        
+        onMouseMove
+            updates the dParts of the shape (for polygon atleast; refactor rectangle for something similar)
+            toggles the onMouseUp listener for that node
+
+        onMouseUp
+            removes the onMouseMove listener for that node
+            removes the onMouseUp listener for that node
+
+        Next question is where to define these listeners?
+    */
 }

@@ -49,11 +49,11 @@ class Tool {
 
     // updates the status of the event listener (active or not)
     // this method works well with the abstraction for event listeners used in the codebase
-    editEventListenerInvokeStatus(type, invoke) {
-        let els = this.eventListeners;
+    editEventListenerInvokeStatus(event, invoke) {
+        const els = this.eventListeners;
 
         for (let i = 0; i < els.length; i++) {
-            if (els[i].event === type) 
+            if (els[i].event === event) 
             {
                 els[i].invoke = invoke;
                 if (invoke) {
