@@ -1,5 +1,8 @@
-const svgns = "http://www.w3.org/2000/svg";
-class Canvas {
+import { Point } from './Point';
+import { SelectorNode } from '../selectorNode/SelectorNode';
+
+export const svgns = "http://www.w3.org/2000/svg";
+export class Canvas {
     constructor(width, height, canvasId = "canvas", canvasContainerId = "canvas-container") {
         this.domElement = document.createElementNS(svgns, "svg");
 
@@ -23,6 +26,7 @@ class Canvas {
 
         this.shapes = []; // stores a list of all COMPLETE shapes currently drawn on the canvas
         this.currentShape = null; // the shape that is selected, or is being drawn
+        this.canvasId = canvasId; // MUST BE REMOVED IN NEXT ITERATION; NOT BEING USED ANYWHERE
 
         /* ---- IMPORTANT: PLEASE READ COMMENTS---- */
         this.currentTool = null; // the tool that is currently active
@@ -80,7 +84,7 @@ class Canvas {
     }
 
     createNode(location, shape=this.currentShape) {
-        const node = new Node(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, "circle", {
+        const node = new SelectorNode(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, "circle", {
             "fill": "cyan",
             "stroke": "black",
             "stroke-width": "3px",

@@ -1,4 +1,6 @@
-class Shape {
+import { svgns } from '../canvas/Canvas';
+
+export class Shape {
     /* NOTE: CURRENTLY DOESN'T SUPPORT MULTIPLE DOM ELEMENTS PER SHAPE */
     constructor(canvas, name, attributes={}, svgTag='path',append=false) {
         this.canvas = canvas; // the canvas in which the shape is to be drawn
@@ -94,7 +96,7 @@ class Shape {
 
     // used for registering a new click and updating the list of clicked positions
     // THIS FUNCTION SHOULD ONLY BE USED WHEN THE SHAPE IS BEING CREATED
-    registerClick(newCursorPosition) {
+    registerClick() {
         console.error("updateClickedCursorPositions() needs to be implemented for this shape");
     }
 

@@ -1,4 +1,7 @@
-class RectangleTool extends Tool {
+import { Tool } from './Tool';
+import { onMouseClickRectangle, onMouseMoveRectangle } from '../eventListeners';
+
+export class RectangleTool extends Tool {
     constructor(canvas) {
         super("rectangle", canvas, [
             {

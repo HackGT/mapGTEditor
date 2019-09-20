@@ -1,4 +1,6 @@
-class Node {
+import { svgns } from '../canvas/Canvas';
+
+export class SelectorNode {
     constructor(canvas, location, id, eventListeners, svgTag="circle", attributes={}) {
 
         /* TODOS: ADD EVENT LISTENERS */

@@ -1,4 +1,8 @@
-class Polygon extends Shape {
+import { Shape } from './Shape';
+import { Point } from '../canvas/Point';
+import { onMouseDownNodePolygon, onMouseUpNodePolygon, onMouseMoveNodePolygon } from '../nodeEventListeners';
+
+export class Polygon extends Shape {
     constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
         super(canvas, "polygon", attributes);
 

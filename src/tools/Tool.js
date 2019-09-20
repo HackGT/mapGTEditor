@@ -1,4 +1,4 @@
-class Tool {
+export class Tool {
     constructor(name, canvas, eventListeners) {
         this.name = name; // the name of the tool
         this.domElement = document.createElement("button"); // the button for the tool

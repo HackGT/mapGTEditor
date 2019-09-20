@@ -1,11 +1,11 @@
 /* --- POLYGON --- */
 
-function onMouseDownNodePolygon() {
+export function onMouseDownNodePolygon() {
     this.editEventListenerInvokeStatus("mousemove", true, this.canvas);
     this.editEventListenerInvokeStatus("mouseup", true, this.canvas);
 }
 
-function onMouseMoveNodePolygon() {
+export function onMouseMoveNodePolygon() {
     const splitIds = this.id.split("/");
     // even indices -> shape number
     // odd indices -> node number
@@ -18,7 +18,7 @@ function onMouseMoveNodePolygon() {
     }
 }
 
-function onMouseUpNodePolygon() {
+export function onMouseUpNodePolygon() {
     this.editEventListenerInvokeStatus("mousemove", false, this.canvas);
     this.editEventListenerInvokeStatus("mouseup", false, this.canvas);
 }

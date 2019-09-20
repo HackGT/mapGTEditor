@@ -1,7 +1,10 @@
+import { Rectangle } from './shapes/Rectangle';
+import { Polygon } from './shapes/Polygon';
+
 /* All event listener callbacks go in this file */
 
 /* --- RECTANGLE EVENT LISTENERS --- */
-function onMouseClickRectangle() {
+export function onMouseClickRectangle() {
     const rect = this.canvas.currentShape;
     if (this.canvas.clicked) {
         this.canvas.add(new Rectangle(this.canvas));
@@ -12,14 +15,14 @@ function onMouseClickRectangle() {
     }
 }
 
-function onMouseMoveRectangle(event) {
+export function onMouseMoveRectangle(event) {
     const rect = this.canvas.currentShape;
     rect.registerClick(this.canvas.getCursorPosition(event));
 }
 /* --- END --- */
 
 /* --- POLYGON EVENT LISTENERS ---*/
-function onMouseClickPolygon(event) {
+export function onMouseClickPolygon(event) {
     if (this.canvas.clicked) {
         this.canvas.add(new Polygon(this.canvas));
         this.editEventListenerInvokeStatus("mousemove", true);
@@ -40,7 +43,7 @@ function onMouseClickPolygon(event) {
     }
 }
 
-function onMouseMovePolygon(event) {
+export function onMouseMovePolygon(event) {
     const polygon = this.canvas.currentShape;
     polygon.updateLastCursorPosition(this.canvas.getCursorPosition(event));
     polygon.render();

@@ -1,4 +1,6 @@
-class SelectTool extends Tool {
+import { Tool } from './Tool';
+
+export class SelectTool extends Tool {
     constructor(canvas) {
         super("select", canvas, []);
         this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button

@@ -1,4 +1,7 @@
-class PolygonTool extends Tool {
+import { Tool } from './Tool';
+import { onMouseClickPolygon, onMouseMovePolygon } from '../eventListeners';
+
+export class PolygonTool extends Tool {
     constructor(canvas) {
         super("polygon", canvas, [
             {

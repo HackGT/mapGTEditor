@@ -1,4 +1,7 @@
-class Rectangle extends Shape {
+import { Shape } from './Shape';
+import { Point } from '../canvas/Point';
+
+export class Rectangle extends Shape {
     constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
         super(canvas, "rect", attributes);
         this.clickedCursorPositions = [this.initialCursorPosition, this.initialCursorPosition]; // setting this for rectangle specific implementation
