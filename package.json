@@ -1,0 +1,27 @@
+{
+  "name": "mapGTEditor",
+  "version": "1.0.0",
+  "description": "An editor to make maps for HackGT Events",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackGT/mapGTEditor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackGT/mapGTEditor/issues"
+  },
+  "homepage": "https://github.com/HackGT/mapGTEditor#readme",
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-google": "^0.14.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8"
+  }
+}
