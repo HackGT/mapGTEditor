@@ -1,5 +1,6 @@
 import { Point } from './Point';
 import { SelectorNode } from '../selectorNode/SelectorNode';
+import { saveAs } from 'file-saver';
 
 export const svgns = "http://www.w3.org/2000/svg";
 export class Canvas {
@@ -15,6 +16,11 @@ export class Canvas {
         this.containerDomElement = document.getElementById(canvasContainerId);
         if (this.containerDomElement) {
             this.containerDomElement.appendChild(this.domElement);
+
+            document.getElementById("export-button").onclick = () => {
+                var svgFile = new Blob([this.containerDomElement.innerHTML], { type: "image/svg+xml" });
+                saveAs(svgFile, "map.svg");
+            }
         } else {
             console.err("Could not find a container to put the canvas svg in");
         }
