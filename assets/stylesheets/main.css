@@ -24,6 +24,10 @@ body {
     background: lightblue;
 }
 
+.details-header {
+    font-weight: bold;
+}
+
 #customization {
     background: coral;
 }

@@ -10,6 +10,5 @@ window.onload = () => {
         "select": new SelectTool(canvas),
         "rectangle": new RectangleTool(canvas),
         "polygon": new PolygonTool(canvas),
-        "image-upload": new (canvas)
     }
 }

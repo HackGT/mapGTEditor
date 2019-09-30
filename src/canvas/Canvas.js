@@ -52,6 +52,12 @@ export class Canvas {
         this.currentState = [];
         /* ---- END ---- */
 
+        /* details and customization */
+        this.detailsBar = document.getElementById("details");
+        if (!this.detailsBar) {
+            console.warn("Details bar could not be found");
+        }
+        window.details = this.detailsBar;
     }
 
     // returns the current position of the cursor
@@ -103,6 +109,34 @@ export class Canvas {
 
     updateNodeId(node, shape) {
         node.id += (shape.id + "/" + shape.nodes.length)
+    }
+
+    updateDetails() {
+
+        /*  
+            TODO:
+            Changing the id and the class should change the 
+            corresponding SVG tag
+        */
+        const shapeId = document.getElementById("shape-id"),
+            shapeName = document.getElementById("shape-name"),
+            shapeClass = document.getElementById("shape-class");
+        
+        if (shapeId) {
+            shapeId.innerHTML = this.currentShape.id;
+        } else {
+            console.warn("id container could not be found in the details bar");
+        }
+        if (shapeName) {
+            shapeName.innerHTML = this.currentShape.name;
+        } else {
+            console.warn("name container could not be found in the details bar");
+        }
+        if (shapeClass) {
+            shapeClass.innerHTML = this.currentShape.domGroup;
+        } else {
+            console.warn("class container could not be found in the details bar");
+        }
     }
     
     /* Private methods */

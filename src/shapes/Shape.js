@@ -103,6 +103,8 @@ export class Shape {
     onSelect() {
         if (!this.selected) {
             this.showNodes();
+            this.canvas.currentShape = this;
+            this.canvas.updateDetails();
             this.toggleNodeEventListeners(true);
         } else {
             this.hideNodes();
