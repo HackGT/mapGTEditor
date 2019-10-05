@@ -48,3 +48,4 @@ export class Point {
         return Point.divide((Point.add(p1,p2)), 2);
     }
 }
+

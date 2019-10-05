@@ -1,5 +1,12 @@
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+
 body {
   background: grey;
+  font-family: "Inter", sans-serif;
 }
 
 #editor {
@@ -8,9 +15,13 @@ body {
     width: 100%;
 }
 
-#editor > div {
+#tools, #side-bar {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+}
+
+#side-bar {
+    width: 100%;
 }
 
 #details,
@@ -39,7 +50,6 @@ body {
 }
 
 #canvas-container {
-    overflow: hidden;
     outline: solid;
     height: 600px;
     widows: 1100px;

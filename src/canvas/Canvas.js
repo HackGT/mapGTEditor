@@ -6,7 +6,6 @@ export const svgns = "http://www.w3.org/2000/svg";
 export class Canvas {
     constructor(width, height, canvasId = "canvas", canvasContainerId = "canvas-container") {
         this.domElement = document.createElementNS(svgns, "svg");
-
         // setting height, width and id of the canvas
         this.domElement.setAttributeNS(null, "width", width);
         this.domElement.setAttributeNS(null, "height", height);

@@ -1,7 +1,7 @@
 export class Tool {
-    constructor(name, canvas, eventListeners) {
+    constructor(name, canvas, eventListeners, tag="button") {
         this.name = name; // the name of the tool
-        this.domElement = document.createElement("button"); // the button for the tool
+        this.domElement = document.createElement(tag); // the button for the tool
 
         this.domElement.innerHTML = this.name; // updating the button text
 
