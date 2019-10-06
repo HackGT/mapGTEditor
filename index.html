@@ -18,7 +18,12 @@
     <div class="border"></div>
     <div class="view-info">
         <div id="view-details">
-            Click <i class="fas fa-plus"></i> to add a view!
+            <select name="" id="view-details-dropdown">
+                <option value="">No view</option>
+            </select>
+        </div>
+        <div class="view-extra">
+
         </div>
     </div>
     <div id="editor">
@@ -44,22 +49,55 @@
                             <td class="table-header">
                                 id
                             </td>
-                            <td id="shape-id">
-                                <input type="text">
+                            <td>
+                                <input id="shape-id" type="text"></input>
                             </td>
                         </tr>
                         <tr>
                             <td class="table-header">
                                 class
                             </td>
-                            <td id="shape-class">
-                                <input type="text">
+                            <td>
+                                <input id="shape-class" type="text"></input>
                             </td>
                         </tr>
                     </tbody>
                 </table>
            </div>
+           <div id="styling">
+                <div class="details-header">
+                        Styling
+                </div>
+                <table>
+                        <tbody>
+                            <tr>
+                                <td class="table-header">
+                                    fill
+                                </td>
+                                <td>
+                                    <input id="shape-fill" type="text"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-header">
+                                    stroke-width
+                                </td>
+                                <td>
+                                    <input id="shape-stroke-width" 
+                                        type="number"
+                                        max="50"
+                                        min="1"
+                                        step="1"
+                                        ></input>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+           </div>
         </div>
+    </div>
+    <div class="footer">
+        Made with 🤓 by <a href="https://hack.gt" target="_blank">HackGT</a> &trade;
     </div>
     <script src="dist/bundle.js"></script>
 </body>

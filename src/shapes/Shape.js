@@ -45,6 +45,7 @@ export class Shape {
         if (append) {
             this.canvas.domElement.appendChild(this.domGroup);
         }
+        this.view = this.canvas.domElement;
     }
 
     // returns a list of current attributes of the path

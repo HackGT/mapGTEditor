@@ -50,7 +50,23 @@ export class Canvas {
         if (!this.detailsBar) {
             console.warn("Details bar could not be found");
         }
-        window.details = this.detailsBar;
+
+        this.views = [];
+        this.currentView = null;
+
+        this.viewDetails = document.getElementById("view-details-dropdown");
+
+        if (!this.viewDetails) {
+            console.warn("view details bar could not be found");
+        } else {
+            this.viewDetails.addEventListener("change", (e) => {
+                if (e.target.value === "") {
+                    e.preventDefault();
+                } else {
+                    this.setActiveView(e.target.value);
+                }
+            })
+        }
     }
 
     // returns the current position of the cursor
@@ -72,10 +88,13 @@ export class Canvas {
 
     // adds the shape to the canvas dom
     add(shape) {
-        this.domElement.insertBefore(shape.domGroup, this.domElement.firstChild);
+        const elementToAffect = this.currentView ? this.currentView : this.domElement;
+        elementToAffect.insertBefore(shape.domGroup, elementToAffect.firstChild);
+        shape.view = elementToAffect;
+        console.log(shape.view);
+        console.log(this.currentView);
         this.clicked = false;
         this.currentShape = shape;
-
         this.masterState.push(shape);
         this.currentState.push(shape);
         this.shapes.push(shape);
@@ -89,7 +108,10 @@ export class Canvas {
     }
 
     createNode(location, shape=this.currentShape) {
-        const node = new SelectorNode(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, "circle", {
+        const container = this.currentView ? 
+            this.domElement.getElementById(this.currentView.attributes.id.nodeValue + "nodes"):
+            this.nodesContainer;
+        const node = new SelectorNode(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, container, "circle", {
             "fill": "cyan",
             "stroke": "black",
             "stroke-width": "3px",
@@ -105,18 +127,12 @@ export class Canvas {
     }
 
     updateDetails() {
-
-        /*  
-            TODO:
-            Changing the id and the class should change the 
-            corresponding SVG tag
-        */
         const shapeId = document.getElementById("shape-id"),
             shapeName = document.getElementById("shape-name"),
             shapeClass = document.getElementById("shape-class");
         
         if (shapeId) {
-            shapeId.innerHTML = this.currentShape.id;
+            shapeId.value = this.currentShape.id;
         } else {
             console.warn("id container could not be found in the details bar");
         }
@@ -126,10 +142,29 @@ export class Canvas {
             console.warn("name container could not be found in the details bar");
         }
         if (shapeClass) {
-            shapeClass.innerHTML = this.currentShape.domGroup;
+            shapeClass.value = "no class";
         } else {
             console.warn("class container could not be found in the details bar");
         }
+    }
+
+    addNewView(newView) {
+        if (!this.viewDetails) {
+            console.warn("You are trying to update view details bar, but it does not exist");
+        } else {
+            this.currentView = newView;
+            const newOption = document.createElement("option");
+            newOption.setAttribute("value", newView.attributes.id.nodeValue);
+            newOption.innerHTML = newView.attributes.id.nodeValue
+            newOption.selected = true;
+            this.viewDetails.appendChild(newOption);
+        }
+    }
+
+    setActiveView(viewId) {
+            this.currentView.setAttributeNS(null, "visibility", "hidden");
+            this.currentView = this.domElement.getElementById(viewId);
+            this.currentView.setAttributeNS(null, "visibility", "visible");
     }
     
     /* Private methods */

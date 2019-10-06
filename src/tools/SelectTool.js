@@ -8,21 +8,26 @@ export class SelectTool extends Tool {
 
     onClickTool() {
         this.canvas.setCurrentTool(this);
-        const image = this.canvas.domElement.getElementById("uploaded-image");
+        const elementToAffect = this.canvas.currentView ? this.canvas.currentView: this.canvas.domElement;
+        const image = this.canvas.domElement.getElementById(elementToAffect.attributes.id.nodeValue + "image");
         if (image) {
-            this.canvas.domElement.insertBefore(image, this.canvas.domElement.firstChild);
+            elementToAffect.insertBefore(image, elementToAffect.firstChild);
         }
         this.canvas.shapes.forEach(shape => {
             if (shape.eventListeners.length === 0) {
                 console.warn(`${shape} has not populated its eventListeners attribute. Read comments in Shape.js on how to do that`);
             } else {
-                const selectListeners = shape.eventListeners.filter(listener => listener.type === "select");
-                for (let listener of selectListeners) {
-                    shape.domElement.addEventListener(listener.event, listener.callBack);
-                    this.canvas.currentEventListeners.push({
-                        event: listener.event,
-                        callBack: listener.callBack
-                    })
+                console.log(this.canvas.currentView);
+                if (shape.view == this.canvas.domElement || shape.view == this.canvas.currentView) {
+                    console.log("adding select listener");
+                    const selectListeners = shape.eventListeners.filter(listener => listener.type === "select");
+                    for (let listener of selectListeners) {
+                        shape.domElement.addEventListener(listener.event, listener.callBack);
+                        this.canvas.currentEventListeners.push({
+                            event: listener.event,
+                            callBack: listener.callBack
+                        });
+                    }   
                 }
             }
         });
