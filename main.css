@@ -7,12 +7,13 @@ html { font-family: 'Inter', sans-serif; }
 body {
   background: #212121;
   font-family: "Inter", sans-serif;
+  color: #dfdbdb;
 }
 
 #editor {
-    padding-top: 20px;
     display: flex;
     width: 100%;
+    padding-top: 10px;
 }
 
 #tools, #side-bar {
@@ -27,9 +28,10 @@ body {
 #details {
     height: 100%;
     padding: 20px;
-    margin: 10px 5px;
+    margin: 0 5px 0px 5px;
     background: #363232;
     color: white;
+    border-radius: 25px;
 }
 
 .details-header {
@@ -49,9 +51,9 @@ body {
 #canvas-container {
     outline: solid;
     height: 600px;
-    widows: 1100px;
+    width: 1100px;
     background-color: white;
-    margin: 20px;
+    margin: 0px 20px 0px 20px;
 }
 
 .table-header {
@@ -78,4 +80,27 @@ body {
 
 .tools > button > i {
     font-size: 15px;
+}
+
+.header {
+    font-size: 2rem;
+    color: #a5cce9;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+.border {
+    height: 3px;
+    background: linear-gradient(90deg, rgba(15,146,227,1) 35%, rgba(0,212,255,1) 100%);
+}
+
+.view-info {
+    padding: 10px;
+    background: #242424;
+    border-radius: 2px; 
+}
+
+#view-details {
+    text-align: center;
 }

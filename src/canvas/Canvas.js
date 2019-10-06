@@ -1,6 +1,5 @@
 import { Point } from './Point';
 import { SelectorNode } from '../selectorNode/SelectorNode';
-import { saveAs } from 'file-saver';
 
 export const svgns = "http://www.w3.org/2000/svg";
 export class Canvas {

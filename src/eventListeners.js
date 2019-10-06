@@ -51,7 +51,8 @@ export function onMouseMovePolygon(event) {
 /* --- END --- */
 
 /* --- EXPORT BUTTON EVENT LISTENER --- */
-export function onMouseClickExportButton(event) {
+export function onMouseClickExportButton() {
+    console.log("this is being executed");
     const svgFile = new Blob([this.canvas.containerDomElement.innerHTML], { type: "image/svg+xml" });
     saveAs(svgFile, "map.svg");
 }
