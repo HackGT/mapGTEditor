@@ -4,44 +4,51 @@
 <head>
     <title>MapGTEditor</title>
     <link rel="stylesheet" href="assets/stylesheets/main.css">
+    <script src="https://kit.fontawesome.com/cd04d1b879.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="editor">
-        <div id="tools" class="tools"></div>
+        <div id="tools" class="tools">
+        </div>
         <div id="canvas-container"></div>
         <div id="side-bar">
             <div id="details">
-                table
                 <div class="details-header">
                     Details
                 </div>
-                <div>
-                    <div>tag</div>
-                    <div id="shape-name">
-                    </div>
-                </div>
-                <div>
-                    <div>id</div>
-                    <div id="shape-id">
-                    </div>
-                </div>
-                <div>
-                    <div>class</div>
-                    <div id="shape-class">
-                    </div>
-                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="table-header">
+                                tag
+                            </td>
+                            <td id="shape-name">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-header">
+                                id
+                            </td>
+                            <td id="shape-id">
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-header">
+                                class
+                            </td>
+                            <td id="shape-class">
+                                <input type="text">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
            </div>
-            <div id="customization">
-                <p>boogaloo</p>
-                <p>tyme</p>
-                <p>robbie</p>
-                <p>pam</p>
-                <p>sam</p>
-            </div>
         </div>
     </div>
-    <button id="export-button">Export</button>
+    <button id="export-button" class="fas fa-file-download"></button>
     <script src="dist/bundle.js"></script>
 </body>
 

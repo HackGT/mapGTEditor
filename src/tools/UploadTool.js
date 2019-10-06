@@ -4,7 +4,7 @@ import { Point } from "../canvas/Point";
 
 export class UploadTool extends Tool {
     constructor(canvas) {
-        super("upload", canvas, [], "button");
+        super("upload", canvas, [],"fas fa-file-upload");
         this.imageUpload = document.createElement("input");
 
         this.imageUpload.setAttribute("type", "file");

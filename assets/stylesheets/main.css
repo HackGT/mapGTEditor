@@ -5,7 +5,7 @@ html { font-family: 'Inter', sans-serif; }
 }
 
 body {
-  background: grey;
+  background: #212121;
   font-family: "Inter", sans-serif;
 }
 
@@ -24,9 +24,8 @@ body {
     width: 100%;
 }
 
-#details,
-#customization {
-    height: 50%;
+#details {
+    height: 100%;
     padding: 20px;
     margin: 10px 5px;
 }
@@ -55,4 +54,29 @@ body {
     widows: 1100px;
     background-color: white;
     margin: 20px;
+}
+
+.table-header {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.tools {
+    background: #363232;
+    padding: 2px;
+    border-radius: 25px;
+}
+
+.tools button {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px black solid;
+    display: flex;
+    justify-content: center;
+}
+
+.tools > button > i {
+    font-size: 15px;
 }
