@@ -1,5 +1,4 @@
 import { Tool } from "./Tool";
-import { onMouseClickExportButton } from "../eventListeners";
 import { saveAs } from 'file-saver';
 
 export class ExportTool extends Tool {

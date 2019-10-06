@@ -49,11 +49,3 @@ export function onMouseMovePolygon(event) {
     polygon.render();
 }
 /* --- END --- */
-
-/* --- EXPORT BUTTON EVENT LISTENER --- */
-export function onMouseClickExportButton() {
-    console.log("this is being executed");
-    const svgFile = new Blob([this.canvas.containerDomElement.innerHTML], { type: "image/svg+xml" });
-    saveAs(svgFile, "map.svg");
-}
-/* --- END --- */
