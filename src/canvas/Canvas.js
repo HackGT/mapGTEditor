@@ -1,10 +1,13 @@
 import { Point } from './Point';
 import { SelectorNode } from '../selectorNode/SelectorNode';
 import { saveAs } from 'file-saver';
+import { Floor } from './Floor';
 
 export const svgns = "http://www.w3.org/2000/svg";
 export class Canvas {
     constructor(width, height, canvasId = "canvas", canvasContainerId = "canvas-container") {
+        this.floors = [new Floor(1)];
+        this.currentFloor = this.floors[0];
         this.domElement = document.createElementNS(svgns, "svg");
 
         // setting height, width and id of the canvas
@@ -25,12 +28,25 @@ export class Canvas {
             console.err("Could not find a container to put the canvas svg in");
         }
 
-        // creating an SVG group that will store all nodes
-        this.nodesContainer = document.createElementNS(svgns, "g");
-        this.nodesContainer.setAttributeNS(null, "id", "nodes")
-        this.domElement.appendChild(this.nodesContainer);
+        this.floors.forEach(floor => {
+            this.domElement.appendChild(floor.domElement);
 
-        this.shapes = []; // stores a list of all COMPLETE shapes currently drawn on the canvas
+            var floorSelectButton = document.createElement("a");
+            
+            floorSelectButton.href = "#";
+            floorSelectButton.text = floor.floorNum + " ";
+            floorSelectButton.onclick = () => {
+                console.log(floor);
+                this.setCurrentFloor(floor);
+            }
+
+            document.getElementById("floor-buttons").appendChild(floorSelectButton);
+        });
+
+        document.getElementById("add-floor").onclick = () => this.createFloor();
+
+
+        this.shapes = this.currentFloor.shapes; // stores a list of all COMPLETE shapes currently drawn on the canvas
         this.currentShape = null; // the shape that is selected, or is being drawn
         this.canvasId = canvasId; // MUST BE REMOVED IN NEXT ITERATION; NOT BEING USED ANYWHERE
 
@@ -51,7 +67,7 @@ export class Canvas {
         this.masterState = [];
         this.currentState = [];
         /* ---- END ---- */
-
+        console.log(this.currentFloor);
     }
 
     // returns the current position of the cursor
@@ -73,7 +89,7 @@ export class Canvas {
 
     // adds the shape to the canvas dom
     add(shape) {
-        this.domElement.insertBefore(shape.domGroup, this.domElement.firstChild);
+        this.currentFloor.domElement.insertBefore(shape.domGroup, this.currentFloor.domElement.firstChild);
         this.clicked = false;
         this.currentShape = shape;
 
@@ -99,6 +115,33 @@ export class Canvas {
         node.shapes.push(shape);
         shape.nodes.push(node);
         return node;
+    }
+
+    createFloor() {
+        var newFloor = new Floor(this.floors.length + 1);
+        this.domElement.appendChild(newFloor.domElement);
+        this.floors.push(newFloor);
+
+        this.domElement.appendChild(newFloor.domElement);
+
+        var floorSelectButton = document.createElement("a");
+        
+        floorSelectButton.href = "#";
+        floorSelectButton.text = newFloor.floorNum + " ";
+        floorSelectButton.onclick = () => {
+            console.log(newFloor);
+            this.setCurrentFloor(newFloor);
+        }
+
+        document.getElementById("floor-buttons").appendChild(floorSelectButton);
+
+        this.setCurrentFloor(newFloor);
+    }
+
+    setCurrentFloor(floor) {
+        this.currentFloor.setVisible(false);
+        floor.setVisible(true);
+        this.currentFloor = floor;
     }
 
     updateNodeId(node, shape) {
