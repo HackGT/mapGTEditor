@@ -28,10 +28,8 @@ body {
     height: 100%;
     padding: 20px;
     margin: 10px 5px;
-}
-
-#details {
-    background: lightblue;
+    background: #363232;
+    color: white;
 }
 
 .details-header {
@@ -75,6 +73,7 @@ body {
     border: 2px black solid;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .tools > button > i {

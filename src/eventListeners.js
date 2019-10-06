@@ -48,4 +48,11 @@ export function onMouseMovePolygon(event) {
     polygon.updateLastCursorPosition(this.canvas.getCursorPosition(event));
     polygon.render();
 }
-/* --- END ---*/
+/* --- END --- */
+
+/* --- EXPORT BUTTON EVENT LISTENER --- */
+export function onMouseClickExportButton(event) {
+    const svgFile = new Blob([this.canvas.containerDomElement.innerHTML], { type: "image/svg+xml" });
+    saveAs(svgFile, "map.svg");
+}
+/* --- END --- */

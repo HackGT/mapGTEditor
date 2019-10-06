@@ -15,11 +15,6 @@ export class Canvas {
         this.containerDomElement = document.getElementById(canvasContainerId);
         if (this.containerDomElement) {
             this.containerDomElement.appendChild(this.domElement);
-
-            document.getElementById("export-button").onclick = () => {
-                var svgFile = new Blob([this.containerDomElement.innerHTML], { type: "image/svg+xml" });
-                saveAs(svgFile, "map.svg");
-            }
         } else {
             console.err("Could not find a container to put the canvas svg in");
         }
