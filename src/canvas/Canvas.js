@@ -9,6 +9,7 @@ export class Canvas {
         this.domElement.setAttributeNS(null, "width", width);
         this.domElement.setAttributeNS(null, "height", height);
         this.domElement.setAttributeNS(null, "id", "canvas");
+        this.domElement.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns", svgns);
 
         // looking for a container in which the editor will reside
         this.containerDomElement = document.getElementById(canvasContainerId);
