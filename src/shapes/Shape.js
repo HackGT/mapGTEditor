@@ -45,6 +45,7 @@ export class Shape {
         if (append) {
             this.canvas.domElement.appendChild(this.domGroup);
         }
+        this.view = this.canvas.domElement;
     }
 
     // returns a list of current attributes of the path
@@ -103,6 +104,8 @@ export class Shape {
     onSelect() {
         if (!this.selected) {
             this.showNodes();
+            this.canvas.currentShape = this;
+            this.canvas.updateDetails();
             this.toggleNodeEventListeners(true);
         } else {
             this.hideNodes();

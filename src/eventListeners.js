@@ -48,4 +48,4 @@ export function onMouseMovePolygon(event) {
     polygon.updateLastCursorPosition(this.canvas.getCursorPosition(event));
     polygon.render();
 }
-/* --- END ---*/
+/* --- END --- */

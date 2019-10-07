@@ -1,13 +1,104 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>MapGTEditor</title>
-    <link rel="stylesheet" href="assets/stylesheets/main.css">
-  </head>
-  <body>
-    <div class="tools"></div>
-    <div id="canvas-container"></div>
-    <button id="export-button">Export</button>
+    <link rel="stylesheet" href="./main.css">
+    <script src="https://kit.fontawesome.com/cd04d1b879.js" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    </head>
+
+<body>
+    <div class="header">
+        MapGT Editor
+    </div>
+    <div class="border"></div>
+    <div class="view-info">
+        <div id="view-details">
+            <select name="" id="view-details-dropdown">
+                <option value="">No view</option>
+            </select>
+        </div>
+        <div class="view-extra">
+
+        </div>
+    </div>
+    <div id="editor">
+        <div id="tools" class="tools">
+        </div>
+        <div id="canvas-container"></div>
+        <div id="side-bar">
+            <div id="details">
+                <div class="details-header">
+                    Details
+                </div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="table-header">
+                                tag
+                            </td>
+                            <td id="shape-name">
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-header">
+                                id
+                            </td>
+                            <td>
+                                <input id="shape-id" type="text"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table-header">
+                                class
+                            </td>
+                            <td>
+                                <input id="shape-class" type="text"></input>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+           <div id="styling">
+                <div class="details-header">
+                        Styling
+                </div>
+                <table>
+                        <tbody>
+                            <tr>
+                                <td class="table-header">
+                                    fill
+                                </td>
+                                <td>
+                                    <input id="shape-fill" type="text"></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table-header">
+                                    stroke-width
+                                </td>
+                                <td>
+                                    <input id="shape-stroke-width" 
+                                        type="number"
+                                        max="50"
+                                        min="1"
+                                        step="1"
+                                        ></input>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+           </div>
+        </div>
+    </div>
+    <div class="footer">
+        Made with 🤓 by <a href="https://hack.gt" target="_blank">HackGT</a> &trade;
+    </div>
     <script src="dist/bundle.js"></script>
-  </body>
+</body>
 </html>

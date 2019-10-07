@@ -14,7 +14,7 @@ export class RectangleTool extends Tool {
                 "callBack": onMouseMoveRectangle,
                 "invoke": false,
             }
-        ]);
+        ], "fas fa-vector-square");
         this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button
     }
 }

@@ -1,10 +1,13 @@
 export class Tool {
-    constructor(name, canvas, eventListeners) {
+    constructor(name, canvas, eventListeners, icon="", tag="button") {
         this.name = name; // the name of the tool
-        this.domElement = document.createElement("button"); // the button for the tool
-
-        this.domElement.innerHTML = this.name; // updating the button text
-
+        this.domElement = document.createElement(tag); // the button for the tool
+        this.domElement.title = this.name;
+        if (!icon) {
+            this.domElement.innerHTML = this.name; // updating the button text
+        } else {
+            this.domElement.innerHTML = `<i class="${icon}"></i>`
+        }
         // looking for a container div to append the tools to
         const toolsDiv = document.querySelector(".tools");
         if (toolsDiv) {

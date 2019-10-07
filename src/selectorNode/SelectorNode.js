@@ -1,7 +1,7 @@
 import { svgns } from '../canvas/Canvas';
 
 export class SelectorNode {
-    constructor(canvas, location, id, eventListeners, svgTag="circle", attributes={}) {
+    constructor(canvas, location, id, eventListeners, container, svgTag="circle", attributes={}) {
 
         /* TODOS: ADD EVENT LISTENERS */
 
@@ -20,7 +20,7 @@ export class SelectorNode {
         this.domElement.setAttributeNS(null, "cx", this.location.x);
         this.domElement.setAttributeNS(null, "cy", this.location.y);
 
-        this.canvas.nodesContainer.appendChild(this.domElement); // adding the node to the nodes container
+        container.appendChild(this.domElement); // adding the node to the nodes container
 
         this.shapes = []; // list of shapes that the node is associated with
         this.connections = []; // list of other node connections

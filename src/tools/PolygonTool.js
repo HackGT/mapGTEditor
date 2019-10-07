@@ -14,7 +14,7 @@ export class PolygonTool extends Tool {
                 "callBack": onMouseMovePolygon,
                 "invoke": false
             }
-        ]);
+        ], "fas fa-draw-polygon");
         this.domElement.addEventListener("click", this.onClickTool.bind(this)); // activating the click listener for the tool button
     }
 }
