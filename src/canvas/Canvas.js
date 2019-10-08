@@ -148,7 +148,7 @@ export class Canvas {
         }
     }
 
-    addNewView(newView) {
+    addNewViewToOptions(newView) {
         if (!this.viewDetails) {
             console.warn("You are trying to update view details bar, but it does not exist");
         } else {
@@ -165,6 +165,29 @@ export class Canvas {
             this.currentView.setAttributeNS(null, "visibility", "hidden");
             this.currentView = this.domElement.getElementById(viewId);
             this.currentView.setAttributeNS(null, "visibility", "visible");
+    }
+
+    hideViews() {
+        for (let view of this.views) {
+            view.setAttributeNS(null, "visibility", "hidden");
+        } 
+    }
+
+    createView() {
+        const id = `view${this.views.length}`,
+            newView = document.createElementNS(svgns, "g"),
+            nodesGroup = document.createElementNS(svgns, "g");
+        newView.setAttributeNS(null, "class", "view");
+        newView.setAttributeNS(null, "id", id);
+        nodesGroup.setAttributeNS(null, "id", id+ "nodes");
+        newView.appendChild(nodesGroup);
+        this.domElement.appendChild(newView);
+        this.views.push(newView);
+        return newView;
+    }
+
+    removeLastView() {
+        return this.views.pop();
     }
     
     /* Private methods */
