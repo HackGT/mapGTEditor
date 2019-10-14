@@ -97,6 +97,8 @@ export class Canvas {
         this.masterState.push(shape);
         this.currentState.push(shape);
         this.shapes.push(shape);
+        // setting default class to area
+        shape.domGroup.classList.add("area");
     }
 
     // updates the current tool, and does necessary event listener handling
@@ -141,7 +143,7 @@ export class Canvas {
             console.warn("name container could not be found in the details bar");
         }
         if (shapeClass) {
-            shapeClass.value = "no class";
+            shapeClass.value = this.currentShape.domGroup.classList;
         } else {
             console.warn("class container could not be found in the details bar");
         }
