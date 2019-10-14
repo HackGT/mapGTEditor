@@ -19,7 +19,6 @@ export class UploadTool extends Tool {
         document.body.appendChild(imageUpload);
 
         imageUpload.click();
-
-        imageUpload.addEventListener("change", handleUpload.bind(null, this.canvas));
+        imageUpload.addEventListener("change", handleUpload.bind(handleUpload, this.canvas, imageUpload));
     }
 }

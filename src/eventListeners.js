@@ -53,11 +53,11 @@ export function onMouseMovePolygon(event) {
 /* --- END --- */
 
 /* --- UPLOAD EVENT LISTENERS --- */
-export function handleUpload(canvas) {
-    const file = this.files[0],
-        view = canvas.createView(),
-        viewId = `view${canvas.views.length}`;
+export function handleUpload(canvas, inputBtn) {
     canvas.hideViews();
+    const file = inputBtn.files[0],
+        viewId = `view${canvas.views.length}`,
+        view = canvas.createView();
     const img = loadImage(file, view, viewId);
 
     /* --- IMAGE DRAGGING --- */

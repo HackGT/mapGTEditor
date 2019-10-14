@@ -92,8 +92,6 @@ export class Canvas {
         const elementToAffect = this.currentView ? this.currentView : this.domElement;
         elementToAffect.insertBefore(shape.domGroup, elementToAffect.firstChild);
         shape.view = elementToAffect;
-        console.log(shape.view);
-        console.log(this.currentView);
         this.clicked = false;
         this.currentShape = shape;
         this.masterState.push(shape);

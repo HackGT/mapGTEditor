@@ -9,6 +9,7 @@ export class SelectTool extends Tool {
     onClickTool() {
         this.canvas.setCurrentTool(this);
         const elementToAffect = this.canvas.currentView ? this.canvas.currentView: this.canvas.domElement;
+        console.log(elementToAffect.attributes.id.nodeValue + "image");
         const image = this.canvas.domElement.getElementById(elementToAffect.attributes.id.nodeValue + "image");
         if (image) {
             elementToAffect.insertBefore(image, elementToAffect.firstChild);
@@ -17,9 +18,7 @@ export class SelectTool extends Tool {
             if (shape.eventListeners.length === 0) {
                 console.warn(`${shape} has not populated its eventListeners attribute. Read comments in Shape.js on how to do that`);
             } else {
-                console.log(this.canvas.currentView);
                 if (shape.view == this.canvas.domElement || shape.view == this.canvas.currentView) {
-                    console.log("adding select listener");
                     const selectListeners = shape.eventListeners.filter(listener => listener.type === "select");
                     for (let listener of selectListeners) {
                         shape.domElement.addEventListener(listener.event, listener.callBack);
