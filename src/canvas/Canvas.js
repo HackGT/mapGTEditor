@@ -126,22 +126,38 @@ export class Canvas {
     }
 
     updateDetails() {
-        const shapeId = document.getElementById("shape-id"),
-            shapeName = document.getElementById("shape-name"),
-            shapeClass = document.getElementById("shape-class");
+        const shapeIdInput = document.getElementById("shape-id"),
+              shapeNameInput = document.getElementById("shape-name"),
+              shapeClassInput = document.getElementById("shape-class"),
+              shapeFillInput = document.getElementById("shape-fill"),
+              shapeStrokeWidthInput = document.getElementById("shape-stroke-width");
         
-        if (shapeId) {
-            shapeId.value = this.currentShape.id;
+        if (shapeIdInput) {
+            shapeIdInput.value = this.currentShape.domGroup.id ? this.currentShape.domGroup.id : "";
         } else {
             console.warn("id container could not be found in the details bar");
         }
-        if (shapeName) {
-            shapeName.innerHTML = this.currentShape.name;
+
+        if (shapeNameInput) {
+            shapeNameInput.innerHTML = this.currentShape.name;
         } else {
             console.warn("name container could not be found in the details bar");
         }
-        if (shapeClass) {
-            shapeClass.value = "no class";
+
+        if (shapeClassInput) {
+            shapeClassInput.value = this.currentShape.domGroup.class || "";
+        } else {
+            console.warn("class container could not be found in the details bar");
+        }
+
+        if (shapeFillInput) {
+            shapeFillInput.value = this.currentShape.domElement.style.fill || "";
+        } else {
+            console.warn("class container could not be found in the details bar");
+        }
+
+        if (shapeStrokeWidthInput) {
+            shapeStrokeWidthInput.value = this.currentShape.domElement.style.strokeWidth || "";
         } else {
             console.warn("class container could not be found in the details bar");
         }
