@@ -91,6 +91,10 @@ export class Canvas {
     add(shape) {
         const elementToAffect = this.currentView ? this.currentView : this.domElement;
         elementToAffect.insertBefore(shape.domGroup, elementToAffect.firstChild);
+        const image = this.domElement.getElementById(elementToAffect.attributes.id.nodeValue + "image");
+        if (image) {
+            elementToAffect.insertBefore(image, elementToAffect.firstChild);
+        }
         shape.view = elementToAffect;
         this.clicked = false;
         this.currentShape = shape;

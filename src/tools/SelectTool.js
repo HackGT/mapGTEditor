@@ -9,7 +9,6 @@ export class SelectTool extends Tool {
     onClickTool() {
         this.canvas.setCurrentTool(this);
         const elementToAffect = this.canvas.currentView ? this.canvas.currentView: this.canvas.domElement;
-        console.log(elementToAffect.attributes.id.nodeValue + "image");
         const image = this.canvas.domElement.getElementById(elementToAffect.attributes.id.nodeValue + "image");
         if (image) {
             elementToAffect.insertBefore(image, elementToAffect.firstChild);
