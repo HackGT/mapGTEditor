@@ -119,8 +119,8 @@ export class Canvas {
         const node = new SelectorNode(this, location, this._getNewNodeID(shape), shape.nodeEventListeners, container, "circle", {
             "fill": "cyan",
             "stroke": "black",
-            "stroke-width": "3px",
-            "r": "5px"
+            "stroke-width": "1px",
+            "r": "2px"
         });
         node.shapes.push(shape);
         shape.nodes.push(node);

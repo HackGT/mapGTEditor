@@ -3,7 +3,7 @@ import { Point } from '../canvas/Point';
 import { onMouseDownNodePolygon, onMouseUpNodePolygon, onMouseMoveNodePolygon } from '../nodeEventListeners';
 
 export class Polygon extends Shape {
-    constructor(canvas, attributes={"stroke": "black", "fill": "none", "stroke-width": "5px"}) {
+    constructor(canvas, attributes={"stroke": "black", "fill": "transparent", "stroke-width": "0.5px"}) {
         super(canvas, "polygon", attributes);
 
         this.eventListeners = [

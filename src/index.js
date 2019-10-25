@@ -31,9 +31,6 @@ window.onload = () => {
     });
 
     updateShapeButton.addEventListener("click", e => {
-        console.log(shapeIdInput.value);
-        console.log(shapeClassInput.value);
-        console.log("updated");
         var currentShape = canvas.currentShape;
         
         if (shapeIdInput.value) {
@@ -41,10 +38,16 @@ window.onload = () => {
         }
         
         if (shapeClassInput.value) {
-            currentShape.domGroup.className.baseVal = shapeClassInput.value;
+            const classes = currentShape.domGroup.classList;
+            for (let i = 0; i < classes.length; i++) {
+                currentShape.domGroup.classList.remove(classes[i]);
+            }
+            const newClasses = shapeClassInput.value.split(" ");
+            for (let newClass of newClasses) {
+                currentShape.domGroup.classList.add(newClass);
+            }
+            currentShape.domGroup.classList.add("area");
         }
-
-        console.log(currentShape.domElement);
 
         if (shapeFillInput.value) {
             currentShape.domElement.style.fill = shapeFillInput.value;

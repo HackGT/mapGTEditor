@@ -8,6 +8,11 @@ export class ExportTool extends Tool {
     }
 
     onClickTool() {
+        const paths = Array.from(this.canvas.domElement.querySelectorAll("path"));
+        paths.map(path => {
+            path.setAttributeNS(null, "fill", "transparent");
+            path.setAttributeNS(null, "stroke", "none");
+        })
         const svgFile = new Blob([this.canvas.containerDomElement.innerHTML], { type: "image/svg+xml" });
         saveAs(svgFile, "map.svg");
     }
