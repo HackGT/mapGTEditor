@@ -75,8 +75,8 @@ export class Polygon extends Shape {
         const mPart = {
             type: "M",
             values: [
-                dSplit[1],
-                dSplit[2]
+                parseFloat(dSplit[1].trim()),
+                parseFloat(dSplit[2].trim())
             ],
             node: this.canvas.createNode(new Point(dSplit[1], dSplit[2]), this)
         }
@@ -90,8 +90,8 @@ export class Polygon extends Shape {
                 dParts.push({
                     type: dSplit[i],
                     values: [
-                        parseInt(dSplit[i+1]),
-                        parseInt(dSplit[i+2])
+                        parseFloat(dSplit[i+1].trim()),
+                        parseFloat(dSplit[i+2].trim())
                     ],
                     node: this.canvas.createNode(new Point(dSplit[i+1], dSplit[i+2]), this)
                 })

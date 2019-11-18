@@ -225,7 +225,8 @@ export class Canvas {
 
     copyPaste() {
         this.register = this.shapes[0];
-        const shape = new Polygon(this, "M 123 109 L 343 101 L 343 119 L 277 193 Z");
+        const shape = new Polygon(this, this.shapes[0]._getD());
+        shape.updateDPartsOffset(50, 0);
         this.add(shape);
         this.clicked = true;
     }
