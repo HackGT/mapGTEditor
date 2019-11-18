@@ -1,0 +1,21 @@
+{
+    "short_name": "Editor",
+    "name": "MapGT Editor",
+    "icons": [
+      {
+        "src": "/favicon/android-chrome-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/favicon/android-chrome-512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/",
+    "background_color": "#212121",
+    "display": "standalone",
+    "scope": "/",
+    "theme_color": "#212121"
+  }

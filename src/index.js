@@ -9,34 +9,39 @@ import { ExportTool } from "./tools/ExportTool";
 window.onload = () => {
     const canvas = new Canvas(1100, 600);
     const tools = {
-        "select": new SelectTool(canvas),
-        "rectangle": new RectangleTool(canvas),
-        "polygon": new PolygonTool(canvas),
-        "upload": new UploadTool(canvas),
-        "export": new ExportTool(canvas),
-    }
+        select: new SelectTool(canvas),
+        rectangle: new RectangleTool(canvas),
+        polygon: new PolygonTool(canvas),
+        upload: new UploadTool(canvas),
+        export: new ExportTool(canvas)
+    };
 
     const updateShapeButton = document.getElementById("update-shape");
     updateShapeButton.disabled = true;
 
     const shapeIdInput = document.getElementById("shape-id"),
-          shapeClassInput = document.getElementById("shape-class"),
-          shapeFillInput = document.getElementById("shape-fill"),
-          shapeStrokeWidthInput = document.getElementById("shape-stroke-width");
+        shapeClassInput = document.getElementById("shape-class"),
+        shapeFillInput = document.getElementById("shape-fill"),
+        shapeStrokeWidthInput = document.getElementById("shape-stroke-width");
 
-    [shapeIdInput, shapeClassInput, shapeFillInput, shapeStrokeWidthInput].forEach(element => {
+    [
+        shapeIdInput,
+        shapeClassInput,
+        shapeFillInput,
+        shapeStrokeWidthInput
+    ].forEach(element => {
         element.addEventListener("input", e => {
             updateShapeButton.disabled = false;
-        })
+        });
     });
 
     updateShapeButton.addEventListener("click", e => {
         var currentShape = canvas.currentShape;
-        
+
         if (shapeIdInput.value) {
             currentShape.domGroup.id = shapeIdInput.value;
         }
-        
+
         if (shapeClassInput.value) {
             const classes = currentShape.domGroup.classList;
             for (let i = 0; i < classes.length; i++) {
@@ -58,5 +63,22 @@ window.onload = () => {
         }
 
         updateShapeButton.disabled = true;
-    })
+    });
+};
+
+// Service worker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("../serviceWorker.js").then(
+            registration => {
+                console.log(
+                    "service worker registration successful with scope: ",
+                    registration.scope
+                );
+            },
+            err => {
+                console.log("Service worker registration failed", err);
+            }
+        );
+    });
 }
