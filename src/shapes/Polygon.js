@@ -1,9 +1,10 @@
 import { Shape } from './Shape';
 import { Point } from '../canvas/Point';
 import { onMouseDownNodePolygon, onMouseUpNodePolygon, onMouseMoveNodePolygon } from '../nodeEventListeners';
+import { onMouseDownSelectPolygon } from '../eventListeners';
 
 export class Polygon extends Shape {
-    constructor(canvas, attributes={"stroke": "black", "fill": "transparent", "stroke-width": "0.5px"}) {
+    constructor(canvas,  d="", attributes={"stroke": "black", "fill": "transparent", "stroke-width": "0.5px"}) {
         super(canvas, "polygon", attributes);
 
         this.eventListeners = [
@@ -11,6 +12,11 @@ export class Polygon extends Shape {
                 event: "click",
                 type: "select",
                 callBack: this.onSelect.bind(this)
+            },
+            {
+                event: "mousedown",
+                type: "select",
+                callBack: onMouseDownSelectPolygon.bind(this)
             }
         ];
         this.nodeEventListeners = [
@@ -34,26 +40,65 @@ export class Polygon extends Shape {
             }
         ]
         
-        this.dParts = [
-            {
-                type: "M",
-                values: [
-                    this.initialCursorPosition.x,
-                    this.initialCursorPosition.y
-                ],
-                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
-            },
-            {
-                type: "L",
-                values: [
-                    this.initialCursorPosition.x,
-                    this.initialCursorPosition.y
-                ],
-                node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
-            }
-        ]; // abstraction to easily update and deal with d strings for the path :(
+        if (!d) {
+            this.dParts = [
+                {
+                    type: "M",
+                    values: [
+                        this.initialCursorPosition.x,
+                        this.initialCursorPosition.y
+                    ],
+                    node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+                },
+                {
+                    type: "L",
+                    values: [
+                        this.initialCursorPosition.x,
+                        this.initialCursorPosition.y
+                    ],
+                    node: this.canvas.createNode(new Point(this.initialCursorPosition.x, this.initialCursorPosition.y), this)
+                }
+            ]; // abstraction to easily update and deal with d strings for the path :(
+        } else {
+            this.dParts = this._getDParts(d);
+            this.completeShape();
+        }
 
         this.render();
+    }
+
+    // M 123 109 L 343 101 L 343 119 L 277 193 Z 
+    _getDParts(d) {
+        const dSplit = d.split(" ").filter(part => {
+            return part != "";
+        });
+        const mPart = {
+            type: "M",
+            values: [
+                dSplit[1],
+                dSplit[2]
+            ],
+            node: this.canvas.createNode(new Point(dSplit[1], dSplit[2]), this)
+        }
+
+        const dParts = [mPart];
+
+        for (let i = 3; i < dSplit.length; i+=3) {
+            if (dSplit[i] == "Z") {
+                break;
+            } else {
+                dParts.push({
+                    type: dSplit[i],
+                    values: [
+                        parseInt(dSplit[i+1]),
+                        parseInt(dSplit[i+2])
+                    ],
+                    node: this.canvas.createNode(new Point(dSplit[i+1], dSplit[i+2]), this)
+                })
+            }
+        }
+
+        return dParts;
     }
 
     render() {
@@ -91,6 +136,17 @@ export class Polygon extends Shape {
             this.dParts[index].values = values;
             this.render();
         }
+    }
+
+    updateDPartsOffset(offsetX, offsetY) {
+        for (let dPart of this.dParts) {
+            if (dPart.type !== "Z") {
+                dPart.values[0] += offsetX;
+                dPart.values[1] += offsetY;
+            }
+        }
+        this.domGroup.setAttributeNS(null, "transform", "translate(0, 0)");
+        this.render();
     }
 
 

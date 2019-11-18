@@ -26,6 +26,7 @@ export function onMouseMoveRectangle(event) {
 /* --- POLYGON EVENT LISTENERS ---*/
 export function onMouseClickPolygon(event) {
     if (this.canvas.clicked) {
+        console.log("here")
         this.canvas.add(new Polygon(this.canvas));
         this.editEventListenerInvokeStatus("mousemove", true);
     } else {
@@ -50,6 +51,7 @@ export function onMouseMovePolygon(event) {
     polygon.updateLastCursorPosition(this.canvas.getCursorPosition(event));
     polygon.render();
 }
+
 /* --- END --- */
 
 /* --- UPLOAD EVENT LISTENERS --- */
@@ -172,4 +174,42 @@ function loadImage(file, view, id) {
     })(img);
     reader.readAsDataURL(file);
     return img;
+}
+
+export function onMouseDownSelectPolygon() {
+    if (this.selected) {
+        this.hideNodes();
+        this.canvas.firstClickPos = this.canvas.getCursorPosition();
+        const callBack = onMouseMoveSelectPolygon.bind(this.canvas);
+        this.canvas.tempEventListeners.push({
+            type: "mousemove",
+            callBack
+        });
+        this.canvas.domElement.addEventListener("mousemove", callBack);
+    }
+}
+
+export function onMouseMoveSelectPolygon() {
+    const shape = this.currentShape,
+        initClickPos = this.firstClickPos,
+        currClickPos = this.getCursorPosition(),
+        dp = Point.subtract(currClickPos, initClickPos);
+    shape.domGroup.setAttributeNS(null, "transform", `translate(${dp.x}, ${dp.y})`);
+    const callBack = onMouseUpSelectPolygon.bind(this);
+    this.tempEventListeners.push({
+        type: "mouseup",
+        callBack
+    });
+    this.domElement.addEventListener("mouseup", callBack);
+}
+
+export function onMouseUpSelectPolygon() {
+    const translateVal = this.currentShape.domGroup.attributes.transform.value,
+        offsetX = parseFloat(translateVal.substring(translateVal.indexOf('(') + 1, translateVal.indexOf(','))),
+        offsetY = parseFloat(translateVal.substring(translateVal.indexOf(',') + 2, translateVal.indexOf(')')).trim());
+    this.currentShape.updateDPartsOffset(offsetX, offsetY);
+
+    for (let el of this.tempEventListeners) {
+        this.domElement.removeEventListener(el.type, el.callBack);
+    }
 }

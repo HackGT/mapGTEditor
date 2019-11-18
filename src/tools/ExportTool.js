@@ -11,8 +11,10 @@ export class ExportTool extends Tool {
         const paths = Array.from(this.canvas.domElement.querySelectorAll("path"));
         paths.map(path => {
             path.setAttributeNS(null, "fill", "transparent");
-            path.setAttributeNS(null, "stroke", "none");
+            path.setAttributeNS(null, "stroke", "black");
+            path.setAttributeNS(null, "stroke-width", "2px");
         })
+        this.canvas.domElement.querySelector("image").remove();
         const svgFile = new Blob([this.canvas.containerDomElement.innerHTML], { type: "image/svg+xml" });
         saveAs(svgFile, "map.svg");
     }

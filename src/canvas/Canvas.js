@@ -1,5 +1,6 @@
 import { Point } from './Point';
 import { SelectorNode } from '../selectorNode/SelectorNode';
+import { Polygon } from '../shapes/Polygon';
 
 export const svgns = "http://www.w3.org/2000/svg";
 export class Canvas {
@@ -68,6 +69,18 @@ export class Canvas {
                 }
             })
         }
+
+        this.register = null;
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key == "C") {
+                this.copyPaste();
+            }
+        });
+
+        this.firstClickPos = null; // drag
+        this.tempEventListeners = []; // drag
+        this.isDragging = false;
     }
 
     // returns the current position of the cursor
@@ -208,6 +221,13 @@ export class Canvas {
 
     removeLastView() {
         return this.views.pop();
+    }
+
+    copyPaste() {
+        this.register = this.shapes[0];
+        const shape = new Polygon(this, "M 123 109 L 343 101 L 343 119 L 277 193 Z");
+        this.add(shape);
+        this.clicked = true;
     }
     
     /* Private methods */
