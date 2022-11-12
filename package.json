@@ -22,7 +22,7 @@
     "eslint": "^6.3.0",
     "eslint-config-google": "^0.14.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.8"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "file-saver": "^2.0.2",
